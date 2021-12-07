@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="manifest" href="/puplic/manifest/arwaMill_manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href=" /css/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="card m-3 p-2">
+
+    username :______________
+  </div>
+  <div class="m-3 card p-2 millingStatus">
+    <div class="card text-center">
+      <div class="m-auto">
+        <% let status = "ON" %>
+
+        <h5 class="flex-grow-1 d-inline-flex">Milling Status- </h5> &nbsp; <span
+          class="badge align-text-bottom bg-success text-light rounded p-1"><%= status %> </span>
+      </div>
+      <br>
+      <div class="card p-2 m-2 d-inline" style="border: 1px solid gray;">
+        Date And Time :
+        <div class="d-inline" id="clock"></div>
+        <script src="/scripts/clock.js"></script>
+      </div>
+      <div class="d-flex ">
+        <button class="btn-lg btn-success px-2 mx-4 flex-grow-1 " onclick="">on</button>
+        <button class="btn-lg btn-warning px-2 mx-4 flex-grow-1" onclick="">Maintaince</button>
+        <button class="btn-lg btn-danger px-2 mx-4 flex-grow-1" onclick="">off</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="priviousLogs card m-3 p-2">
+    ejs for loop of 5 recent logs
+
+    <% const logs = [{millingStatus:"asldkfj",logTime:"",naration:""},{millingStatus:"",logTime:"",naration:""},{millingStatus:"",logTime:"",naration:""},{millingStatus:"",logTime:"",naration:""}] %>
+
+    <% for( let i = 0; i < logs.length; i++ ) { %>
+    <div class="card m-1 p-1 " style="border: 1px solid gray;">
+      <%= logs[i].millingStatus %> <br><%= logs[i].logTime %> <br><%= logs[i].naration %>
+    </div>
+    <% } %>
+  </div>
+
+</body>
+
+</html>

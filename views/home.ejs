@@ -1,0 +1,11 @@
+<%- include('./partials/header') -%>
+
+<% blogs.forEach(blog => { %>
+ <h3><%= blog.title %> </h3>
+ <p><%= blog.snippet %> </p>
+<% }) %>
+<form action="/form" method="post" >
+  <input type="text" name="this">
+  <button type="submit" class="btn">submit</button>
+</form>
+<%- include('./partials/footer') -%>

@@ -1,0 +1,169 @@
+<form action="./kin" method="post" autocomplete="off">
+  <div class="m-3 p-3  ">
+    <table>
+      <!-- DATE -->
+      <tr>
+        <td class="p-2 px-4"><label for="">Date</label></td>
+        <td class="p-2 px-4 ">
+          :<input type="datetime-local" name="date" id="1234" value=<%=Date.now()%> style="border:none; width: 205px;">
+          <script type="text/javascript">
+            var d = new Date();
+            var elem = document.getElementById("1234");
+            elem.value = d.toISOString().slice(0, 16);
+          </script>
+        </td>
+      </tr>
+      <!-- GP NO -->
+      <tr>
+        <td class="p-2 px-4"><label for="">Gp No.</label></td>
+        <td class="p-2 px-4 ">
+          : <input type="tel" name="gpNo" id="" style="border:none;">
+        </td>
+      </tr>
+      <!-- RST NO -->
+      <tr>
+        <td class="p-2 px-4"><label for="">Rst No.</label></td>
+        <td class="p-2 px-4 ">
+          : <input type="tel" name="rstNo" id="" style="border:none;">
+        </td>
+      </tr>
+      <!-- truck no -->
+      <tr>
+        <td class="p-2 px-4">
+
+          <label for="">
+            Truck No.
+          </label>
+        </td>
+        <td class="p-2 px-4 ">
+
+          : <input type="tel" name="truckNo" id="" style="border:none;">
+        </td>
+      </tr>
+      <!-- broker -->
+      <tr>
+        <td class="p-2 px-4">
+
+          <label for="">
+            Broker.
+          </label>
+        </td>
+        <td class="p-2 px-4 ">
+
+          : <input type="tel" name="broker" id="" style="border:none;">
+        </td>
+      </tr>
+      <!-- party -->
+      <tr>
+        <td class="p-2 px-4">
+
+          <label for="">
+            Party.
+          </label>
+        </td>
+        <td class="p-2 px-4 ">
+
+          : <input type="tel" name="party" id="" style="border:none;">
+
+
+        </td>
+      </tr>
+      <!-- Place -->
+      <tr>
+        <td class="p-2 px-4">
+
+          <label for="">
+            Place.
+          </label>
+        </td>
+        <td class="p-2 px-4 ">
+
+          : <input type="tel" name="place" id="" style="border:none;">
+        </td>
+      </tr>
+      <!-- hemal -->
+      <tr>
+        <td class="p-2 px-4">
+
+          <label for="">
+            Hemal
+          </label>
+        </td>
+        <td class="p-2 px-4 ">
+
+          : <input type="tel" name="hemal" id="" style="border:none;">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class=" m-2 p-2" id="itemsList">
+            <!-- Paddy | Rice | Broken | rejection | others <br>bhusa |rakhi |kanta |scrap| add new | others -->
+
+
+
+            <br>
+            <table>
+
+              <tr>
+                <td class="p-2 px-4">
+                  Item Name
+                </td>
+                <td class="p-2 px-4">
+                  <input type="text" name="itemName" id="" style="border: none">
+                </td>
+              </tr>
+
+              <tr>
+                <td class="p-2 px-4">
+                  Bags
+                </td>
+                <td class="p-2 px-4">
+                  <input type="text" name="bags" id="" style="border: none">
+                </td>
+              </tr>
+
+              <tr>
+                <td class="p-2 px-4">
+                  Qtls
+                </td>
+                <td class="p-2 px-4">
+                  <input type="text" name="qtls" id="" style="border: none">
+                </td>
+              </tr>
+              <tr>
+                <td class="p-2 px-4">
+                  Rate
+                </td>
+                <td class="p-2 px-4">
+                  <input type="text" name="rate" id="" style="border: none">
+                </td>
+              </tr>
+              <tr>
+                <td class="p-2 px-4">
+                  Remark
+                </td>
+                <td class="p-2 px-4">
+                  <input type="text" name="remark" id="" style="border: none">
+                </td>
+              </tr>
+            </table>
+            <br>
+
+
+          </div>
+          <button class="btn btn-primary px-5">Add Item </button>
+        </td>
+      </tr>
+
+
+
+
+      <!-- submit button -->
+      <tr>
+        <td colspan="2" class=" ">
+          <input type="submit" value="submit" class="btn btn-primary " style="width: 100%;">
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
