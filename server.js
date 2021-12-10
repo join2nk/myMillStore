@@ -1,15 +1,14 @@
 require("dotenv").config()
+const cors = require('cors')
 const express = require("express")
-const ejs = require('ejs')
 const mongoose = require("mongoose")
+
 
 //express app
 const app = express()
 
 //connect to database
-// -->mongoose.connect(uri)
- 
-
+mongoose.connect(process.env.MONGODB, () => console.log("database connected nk"))
 
 app.use(express.json())
 app.use(express.urlencoded({
@@ -18,18 +17,21 @@ app.use(express.urlencoded({
 
 app.use(express.static('./public'));
 
-//application settings 
+app.use(cors({  origin: '*'}))
+
 app.set('view engine', 'ejs');
 
+//home route
 app.get('/', (req, res) => {
-  res.render('arwamill', {})
+  // res.send(JSON.stringify({hello:"hello"}))
+  res.redirect("/arwa")
 })
 
+const arwamillRouter = require("./routes/arwamillRoutes")
+app.use('/arwa', arwamillRouter)
 
 
-
-
-app.listen('3000', (err) => {
+app.listen(process.env.PORT, (err) => {
   if (err) {
     console.log(err);
   } else {
