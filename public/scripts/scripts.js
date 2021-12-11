@@ -87,7 +87,7 @@ function clearTextarea() {
 
 
 
-
+document.getElementById("logSubmit").addEventListener('touchstart',ifsubmit)
 function ifsubmit() {
   let naration = document.getElementById("naration").value;
   let millState = document.getElementById("in-1").value
