@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname+'/public'));
 // app.use(cors({  origin: '*'}))
-app.use(cookieParser())
+// app.use(cookieParser())
 app.set('view engine', 'ejs');
 
 //home route
@@ -25,10 +25,9 @@ app.post('/', (req, res) => {
   // res.send(JSON.stringify({hello:"hello"}))
   res.redirect("/arwa")
 })
-const arwamillRouter = require("./server/routes/arwamillRoutes")
+const arwamillRouter = require(__dirname+"/server/routes/arwamillRoutes")
 app.use('/arwa', arwamillRouter)
 
-const port = process.env.PORT || 4000
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port ${port}`))
 
 app.use((req, res) => {
