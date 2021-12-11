@@ -1,6 +1,6 @@
 require("dotenv").config()
-const cookieParser = require("cookie-parser")
-const cors = require('cors')
+// const cookieParser = require("cookie-parser")
+// const cors = require('cors')
 const express = require("express")
 const mongoose = require("mongoose")
 
@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB, (e) => {if(e){console.log(e + '\n-----Erro
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
-app.use(cors({  origin: '*'}))
+// app.use(cors({  origin: '*'}))
 app.use(cookieParser())
 app.set('view engine', 'ejs');
 
