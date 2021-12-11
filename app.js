@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 //home route
 app.get('/', (req, res) => {
   // res.send(JSON.stringify({hello:"hello"}))
-  res.redirect("/arwa")
+  res.re("/arwa")
 })
 app.post('/', (req, res) => {
   // res.send(JSON.stringify({hello:"hello"}))
@@ -28,7 +28,7 @@ app.post('/', (req, res) => {
 const arwamillRouter = require(__dirname+"/server/routes/arwamillRoutes")
 app.use('/arwa', arwamillRouter)
 
-app.listen(process.env.PORT, ()=>console.log(`server setarted at port ${port}`))
+app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
 
 app.use((req, res) => {
   res.send("<h2>error 404</h2>")
