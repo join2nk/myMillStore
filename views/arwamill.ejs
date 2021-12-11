@@ -13,74 +13,93 @@
 
 <body>
 
-  <div class="card m-3 p-2">
+  <div class="card m-3 p-2 d-none">
 
-    username :______________
+    username :________
   </div>
-  <div class="m-3 card p-2 millingStatus">
-    <div class="card text-center">
-      <div class="m-auto">
-        <% let status = "ON" %>
 
+  <% logs = logs.reverse() %>
+  <!-- form  -->
+  <div class="m-3 card p-2 millingStatus border-2 shadow">
+    <div class="text-center">
+
+      <div class=" m-2">
+        <% let status = "ON" %>
         <h5 class="flex-grow-1 d-inline-flex">Milling Status- </h5> &nbsp; <span
-          class="badge align-text-bottom bg-success text-light rounded p-1"><%= status %> </span>
+          class="badge align-text-bottom bg-success text-light rounded p-1"><%= status %> </span><br>
+        <%= logs[0].millState %> -by:
+        <%= logs[0].user %> <br>
+        <%= logs[0].naration %> <br>
+        <%= logs[0].logdate %>
       </div>
-      <br>
-      <div class="card p-2 m-2 d-inline" style="border: 1px solid gray;">
-        Date And Time :
-        <div class="d-inline" id="clock"></div>
-        <script src="/scripts/clock.js"></script>
+      <!-- on/off buttions checkbox style -->
+      <div>
+        <hr>
+        <button id="1" class="btn bg-lignt py-3 m-1 px-4 mx-2 border-primary border-2 bg-opacity-25"
+          onclick="clicked('1','in-1','ON',['1','2','3'])">ON</button>
+        <button id="2" class="btn bg-lignt py-3 m-1 px-4 mx-2 border-primary border-2  bg-opacity-25"
+          onclick="clicked('2','in-1','OFF',['1','2','3'])">OFF</button>
+        <button id="3" class="btn bg-lignt py-3 m-1 px-4 mx-2 border-primary border-2  bg-opacity-25"
+          onclick="clicked('3','in-1','Maintenance',['1','2','3'])">Maintenance</button>
+        <input type="text" class="d-none" id="in-1" value="">
       </div>
-      <div class="d-flex ">
-        <button id="on" class="btn-lg btn-success px-2 mx-4 flex-grow-1 " onclick="">on</button>
-        <button id="maintaince" class="btn-lg btn-warning px-2 mx-4 flex-grow-1" onclick="">Maintaince</button>
-        <button id="off" class="btn-lg btn-danger px-2 mx-4 flex-grow-1" onclick="">off</button>
-      </div>
+      <hr>
+      <!-- time -->
+      Time :
+      <div class="d-inline bg-light" id="clock"></div>
+      <script src="/scripts/clock.js"></script>
+
+      <hr>
+      <!--naration  -->
+      <div id="choices" style="text-align: left;border: 1px solid black;border-radius: 5px;padding-left: 5px; "></div>
+      <div style="text-align: left;"> Naration:</div>
+
+      <div class="d-block">
+        <textarea name="naration" id="naration" class=" w-100 rounded-1  bg-dark bg-opacity-10" rows="3"></textarea>
+      </div>  
+
+
+
     </div>
 
+    <hr>
+    <button class="btn btn-lg btn-primary bg-opacity-50 mx-5 mt-3 py-3 mb-3 shadow" onclick="ifsubmit()"> Submit </button>
   </div>
 
-  <div class="priviousLogs card m-3 p-2">
+
+
+
+
+
+
+  <!-- logs -->
+  <div class="priviousLogs card m-3 p-2 shadow border-2">
     ejs for loop of 5 recent logs
+    <% for( let i = 0; i < 3; i++ ) { %>
 
+
+    <div class="card m-3 p-3">
+      <%= logs[i].user %><br>
+      <%= logs[i].millState %> <br>
+      <%= logs[i].naration %> <br>
+      <% let year = logs[i].logTime.getFullYear() %>
+      <% let month = logs[i].logTime.getMonth()+1 %>
+      <% let date = logs[i].logTime.getDate() %>
+      <% let hrs = logs[i].logTime.getHours() %>
+      <% let min = logs[i].logTime.getMinutes() %>
+      <% let dateText = `${date}/${month}/${year} - Time- ${hrs}:${min}` %>
+      <%= dateText %>
+    </div>
+
+    <% } %>
   </div>
 
 
-  <script>
-    document.getElementById("on").addEventListener('click', ifOn)
-    document.getElementById("maintaince").addEventListener('click', ifmaintaince)
-    document.getElementById("off").addEventListener('click', ifOff)
-
-    function ifOn() {
-      fetch("http://localhost:3000", {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json,text/plane,*/*',
-            'content-type': 'applicaion/json'
-          },
-          body: JSON.stringify({
-            millState: "on",
-            user: 'bharat',
-            naration: "arwaplant"
-          })
-        })
-        .then(res => {
-          if (res.redirected) {
-            w indow.location.href = res.url;
-          } else {
-            res.json()
-          }
-        })
-        .then(data => console.log(data))
-    }
 
 
-    function ifmaintaince() {
-    }
 
-    function ifOff() {}
-  </script>
 
+  <script src="./scripts/scripts.js"></script>
 </body>
 
 </html>

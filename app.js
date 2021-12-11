@@ -1,0 +1,35 @@
+require("dotenv").config()
+const cookieParser = require("cookie-parser")
+const cors = require('cors')
+const express = require("express")
+const mongoose = require("mongoose")
+
+const app = express()
+
+mongoose.connect(process.env.MONGODB, (e) => {if(e){console.log(e + '\n-----Error')}else{console.log("database connected nk")}})
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('./public'));
+app.use(cors({  origin: '*'}))
+app.use(cookieParser())
+app.set('view engine', 'ejs');
+
+//home route
+app.get('/', (req, res) => {
+  // res.send(JSON.stringify({hello:"hello"}))
+  res.redirect("/arwa")
+})
+app.post('/', (req, res) => {
+  // res.send(JSON.stringify({hello:"hello"}))
+  res.redirect("/arwa")
+})
+const arwamillRouter = require("./server/routes/arwamillRoutes")
+app.use('/arwa', arwamillRouter)
+
+const port = process.env.PORT || 4000
+app.listen(process.env.PORT, ()=>console.log(`server setarted at port ${port}`))
+
+app.use((req, res) => {
+  res.send("<h2>error 404</h2>")
+})

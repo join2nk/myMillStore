@@ -18,7 +18,7 @@ let clock = () => {
   mins = mins < 10 ? "0" + mins : mins;
   secs = secs < 10 ? "0" + secs : secs;
 
-  let time = `${hrs}:${mins}:${secs}:${period} - Date: ${todayDate}/${month+1}/${year}`;
+  let time = `${hrs}:${mins}:${secs}:${period} \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 Date: ${todayDate}/${month+1}/${year}`;
   document.getElementById("clock").innerText = time;
   setTimeout(clock, 1000);
 };
