@@ -93,7 +93,7 @@ function ifsubmit() {
   let millState = document.getElementById("in-1").value
   if (millState == "") return;
 
-  fetch("http://localhost:3000/arwa", {
+  fetch("https://arwamill.herokuapp.com/arwa", {
       method: 'POST',
       headers: {
         'Accept': 'application/json,text/plane,*/*',
