@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB, (e) => {if(e){console.log(e + '\n-----Erro
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname,'./public')));
+app.use(express.static(__dirname+'/public'));
 // app.use(cors({  origin: '*'}))
 app.use(cookieParser())
 app.set('view engine', 'ejs');
