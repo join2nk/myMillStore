@@ -7,7 +7,6 @@ function clicked(id, inid, val, listOfId) {
     elmt.classList.remove("bg-primary")
     elmt.classList.add("bg-light")
     document.getElementById(inid).value = ""
-    console.log("cleared");
   });
   checked = checked ? false : false;
   if (checked) {
@@ -22,7 +21,6 @@ function clicked(id, inid, val, listOfId) {
     element.classList.add("bg-primary")
     checked = true
     document.getElementById(inid).value = val
-    console.log(val);
   }
 }
 
