@@ -1,7 +1,7 @@
 let checked = false
 
 
-function clicked(id, inid, val, listOfId) {
+function checkboxBtnStyleClicked(id, inid, val, listOfId) {
   listOfId.forEach(localid => {
     elmt = document.getElementById(localid)
     elmt.classList.remove("bg-primary")
@@ -25,70 +25,12 @@ function clicked(id, inid, val, listOfId) {
 }
 
 
-
-
-
-let listItem = [
-  ['usna', "arwa"],
-  ["rice", 'broken', 'rejection'],
-  ['export', 'self', 'unknown', 'domestic', 'cgss'],
-  ['frk', 'nonfrk']
-]
-
-let i = 0
-listItem.forEach(list => {
-  list.forEach(item => {
-    document.getElementById("choices").innerHTML += `
-    <button id="${item}" class="btn bg-lignt py-0 m-1 px-2 mx-1 border-primary border-1 bg-opacity-25" onclick="addToNaration('${item}','${i}')">${item}</button>
-    
-    `
-  })
-  document.getElementById("choices").innerHTML += `<br>
-  <div style = "border-bottom:1px solid #CCC">
-  `;
-  i++
-});
-document.getElementById('choices').innerHTML+=`
-<button onclick="clearTextarea()" class="btn btn-warning d-flex py-0 m-auto my-1" style="align-items:flex-start;bot">clear</button>
-`
-
-
-
-function addToNaration(item, i) {
-  let present = false
-
-  listItem[i].forEach(s_item => {
-    if (document.getElementById("naration").value.includes((s_item))) {
-      present = true
-    } else {}
-  })
-  if (present) {
-    document.getElementById("naration").innerHTML = ` ${item} |`
-  } else {
-    document.getElementById("naration").innerHTML += ` ${item} |`
-  }
-}
-
-function clearTextarea() {
-  document.getElementById("naration").value = ""
-
-}
-
-
-
-
-
-
-
-
-
-
+document.getElementById("submit").addEventListener('click',ifsubmit)
 
 
 function ifsubmit() {
-  let naration = document.getElementById("naration").value;
-  let millState = document.getElementById("in-1").value
-  if (millState == "") return;
+  let naration = document.getElementById("naration").value.trim();
+  let millState = document.getElementById("state").value.trim()
 
   fetch("https://arwamill.herokuapp.com/arwa", {
       method: 'POST',
