@@ -1,5 +1,4 @@
 const MillingLogs = require("../models/arwaPlant")
-let testData = [{millState:"not connected",user:"xyz",naration:"this is dest data"}]
 
 // arwamill_index details creat_get creat_post !del 
 

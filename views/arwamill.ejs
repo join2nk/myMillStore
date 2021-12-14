@@ -1,3 +1,5 @@
+<% logs = logs.reverse() %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,90 +15,46 @@
 
 <body>
 
-  <div class="card m-3 p-2 d-none">
-
-    username :________
-  </div>
-
-  <% logs = logs.reverse() %>
-  <!-- form  -->
-  <div class="m-3 card p-2 millingStatus border-2 shadow">
-    <div class="text-center">
-
-      <div class=" m-2">
-        <% let status = "ON" %>
-        <h5 class="flex-grow-1 d-inline-flex">Milling Status- </h5> &nbsp; <span
-          class="badge align-text-bottom bg-success text-light rounded p-1"><%= status %> </span><br>
-        <%= logs[0].millState %> -by:
-        <%= logs[0].user %> <br>
-        <%= logs[0].naration %> <br>
-        <%= logs[0].logdate %>
-      </div>
-      <!-- on/off buttions checkbox style -->
-      <div>
-        <hr>
-        <button id="1" class="btn bg-lignt py-3 m-1 px-4 mx-2 border-primary border-2 bg-opacity-25"
-          onclick="clicked('1','in-1','ON',['1','2','3'])">ON</button>
-        <button id="2" class="btn bg-lignt py-3 m-1 px-4 mx-2 border-primary border-2  bg-opacity-25"
-          onclick="clicked('2','in-1','OFF',['1','2','3'])">OFF</button>
-        <button id="3" class="btn bg-lignt py-3 m-1 px-4 mx-2 border-primary border-2  bg-opacity-25"
-          onclick="clicked('3','in-1','Maintenance',['1','2','3'])">Maintenance</button>
-        <input type="text" class="d-none" id="in-1" value="">
-      </div>
-      <hr>
-      <!-- time -->
-      Time :
-      <div class="d-inline bg-light" id="clock"></div>
-      <script src="/scripts/clock.js"></script>
-
-      <hr>
-      <!--naration  -->
-      <div id="choices" style="text-align: left;border: 1px solid black;border-radius: 5px;padding-left: 5px; "></div>
-      <div style="text-align: left;"> Naration:</div>
-
-      <div class="d-block">
-        <textarea name="naration" id="naration" class=" w-100 rounded-1  bg-dark bg-opacity-10" rows="3"></textarea>
-      </div>  
-
-
-
+  <div class="navbar navbar-dark bg-dark">
+    <div class="ms-2 navbar-brand">
+      Arwa Milling
     </div>
-
-    <hr>
-    <button class="btn btn-lg btn-primary bg-opacity-50 mx-5 mt-3 py-3 mb-3 shadow" onclick="ifsubmit()" id="logSubmit"> Submit </button>
   </div>
 
 
-
-
-
-
-
-  <!-- logs -->
-  <div class="priviousLogs card m-3 p-2 shadow border-2">
-    ejs for loop of 5 recent logs
-    <% for( let i = 0; i < 3; i++ ) { %>
-
-
-    <div class="card m-3 p-3">
-      <%= logs[i].user %><br>
-      <%= logs[i].millState %> <br>
-      <%= logs[i].naration %> <br>
-      <% let year = logs[i].logTime.getFullYear() %>
-      <% let month = logs[i].logTime.getMonth()+1 %>
-      <% let date = logs[i].logTime.getDate() %>
-      <% let hrs = logs[i].logTime.getHours() %>
-      <% let min = logs[i].logTime.getMinutes() %>
-      <% let dateText = `${date}/${month}/${year} - Time- ${hrs}:${min}` %>
-      <%= dateText %>
+  <div class="p-3 container-fluid card mt-2" style="font-size:16px;">
+    <h5>Milling status</h5>
+    <br>
+    <p>
+      <span class="fw-bold">Mill :</span><input class=" ms-3 btn-sm p-3 py-0 btn-dark border-0" type="button" id="state"
+        value="<%= logs[0].millState %>"> <br>
+      <span class="fw-bold"> Tags :</span>
+      <% logs.forEach(log=> { %>
+      <% log.tags.forEach(tag => { %>
+      <%= tag %>,&nbsp;
+      <% }) %>
+      <% }) %> <br>
+      <span class="fw-bold">Start Date :</span><%= logs[0].logTime.toLocaleDateString('en-IN') %> <br>
+      <span class="fw-bold">Start Time :</span><%= logs[0].logTime.toLocaleTimeString('en-IN',{ hour: '2-digit', minute: '2-digit'}) %> <br>
+      <span class="fw-bold">running time -</span> <%= Math.round(Math.abs((logs[0].logTime-logs[1]?.logTime)/36e5*100))/100 %> Hrs <br>
+      <span class="fw-bold">Logged By : </span><%= logs[0].user %> <br>
+      <span class="fw-bold">Note :</span><%= logs[0].naration %> <br>
+    </p>
+    <div class="d-grid gap-2 d-flex justify-content-end">
+      <button class="btn btn-primary me-2 w-25" id="submit" type="button">Button</button>
     </div>
-
-    <% } %>
   </div>
 
 
-
-
+  <script>
+    let state = document.getElementById('state').value
+    console.log(state)
+    if (state == "ON") {
+      document.getElementById('state').classList.add("bg-success")
+    } else if (state == "OFF") {
+      document.getElementById('state').classList.add("bg-danger")
+    }
+  </script>
 
 
   <script src="./scripts/scripts.js"></script>
