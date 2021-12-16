@@ -33,33 +33,45 @@ quantity bags qt others
 
 
 */
-const { type } = require("express/lib/response")
 const mongoose = require("mongoose")
 
 const gatepass = new mongoose.Schema({
-  gatepass_no:String,
-  date:{type:Date,default:new Date.now},
-  //-broker [{}]
-  broker:String,
-  //-party [{party name address bank ac details photo}]
-  party:String,
-  //-truck no []&non
-  truck:String,
-  //-hemal []
-  hemal:String,
-  state :String,
-  gatepassGroup:String,
-  sauda:Boolean,
-  do_number_sauda_no:String,
-  billDetails:{
-    //wrong
-    
-  },
-  
-
+  gatepass_no: String,
+  date: {type: Date,default: new Date.now},
+  broker: String,
+  party: String,
+  truck: String,
+  hemal: String,
+  state: [{
+    state:String,//outfordo, in, loading/unloading, gatepass, out, payemnt_clear
+    by:String,
+    at:{type:Date,default:new Date.now}
+  }],
+  gatepassGroup: String,
+  sauda: Boolean,
+  do_number_sauda_no: String,
+  billDetails: [{
+    itemName: String,
+    itemCatigory:String,
+    itemNaration:String,
+    Rate:Number,
+    bags:Number,
+    qt:Number,
+    alternateUnitName:String,
+  }],
+  ActualDetails: [{
+    itemName: String,
+    itemCatigory:String,
+    itemNaration:String,
+    Rate:Number,
+    bags:Number,
+    qt:Number,
+    alternateUnitName:String,
+  }],
+  naration:String
 })
 
-module.exports = mongoose.model("arwamillinglog",arwaPlantSchema)
+module.exports = mongoose.model("log", arwaPlantSchema)
 
 /**
 
