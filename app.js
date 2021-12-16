@@ -28,6 +28,10 @@ app.post('/', (req, res) => {
 const arwamillRouter = require(__dirname+"/server/routes/arwamillRoutes")
 app.use('/arwa', arwamillRouter)
 
+const gatepassRouter = require(__dirname+"/server/routes/gatepassRouter")
+app.use('/gatepass', gatepassRouter)
+
+
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
 
 app.use((req, res) => {

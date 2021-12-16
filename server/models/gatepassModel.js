@@ -37,7 +37,7 @@ const mongoose = require("mongoose")
 
 const gatepass = new mongoose.Schema({
   gatepass_no: String,
-  date: {type: Date,default: new Date.now},
+  date: {type: Date,default: new Date()},
   broker: String,
   party: String,
   truck: String,
@@ -45,7 +45,7 @@ const gatepass = new mongoose.Schema({
   state: [{
     state:String,//outfordo, in, loading/unloading, gatepass, out, payemnt_clear
     by:String,
-    at:{type:Date,default:new Date.now}
+    at:{type:Date,default:new Date()}
   }],
   gatepassGroup: String,
   sauda: Boolean,
@@ -71,7 +71,7 @@ const gatepass = new mongoose.Schema({
   naration:String
 })
 
-module.exports = mongoose.model("log", arwaPlantSchema)
+module.exports = mongoose.model("log", gatepass)
 
 /**
 
