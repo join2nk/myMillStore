@@ -32,7 +32,36 @@ quantity bags qt others
 -hemal
 
 
+*/
+const { type } = require("express/lib/response")
+const mongoose = require("mongoose")
 
+const gatepass = new mongoose.Schema({
+  gatepass_no:String,
+  date:{type:Date,default:new Date.now},
+  //-broker [{}]
+  broker:String,
+  //-party [{party name address bank ac details photo}]
+  party:String,
+  //-truck no []&non
+  truck:String,
+  //-hemal []
+  hemal:String,
+  state :String,
+  gatepassGroup:String,
+  sauda:Boolean,
+  do_number_sauda_no:String,
+  billDetails:{
+    //wrong
+    
+  },
+  
+
+})
+
+module.exports = mongoose.model("arwamillinglog",arwaPlantSchema)
+
+/**
 
 
 sauda
