@@ -25,6 +25,81 @@
     </div>
   </div>
 
+  <div class="p-0 container-fluid bg-light mt-2" style="font-size:14px;font-weight: 400;" id="log">
+
+    <div class="navbar navbar-dark bg-success <%=  %>  container-fluid mt-0 text-light">
+      Truck no :
+      <%= logs[0].truck %>
+      <%= logs[0].broker %>
+      <%= logs[0].party %>
+      <%= logs[0].hemal %>
+      <span class="align-content-end">
+        <%= logs[0].state[1].at%>
+      </span>
+    </div>
+
+    <div class="ps-3 pb-2 mt-2">
+      <details open>
+        <summary style="display: block;">
+          gp no :<%= logs[0].gatepass_no.split('-',3)[2] %> <br>
+
+        </summary>
+        <p>
+          date :<%= logs[0].date.getDate() + logs[0].date.getFullYear() %> <br>
+          broker :<%= logs[0].broker %> <br>
+          <br>
+          <%= logs %> <br>
+
+        </p>
+      </details>
+
+    </div>
+  </div>
+
+  <% logs.forEach(log => { %>
+  <div class="p-0 container-fluid bg-light mt-2" style="font-size:14px;font-weight: 400;" id="log">
+
+    <div class="navbar navbar-dark bg-success <%=  %>  container-fluid mt-0 text-light">
+      Truck no :
+      <%= log.truck %>
+      <%= log.broker %>
+      <%= log.party %>
+      <%= log.hemal %>
+      <span class="align-content-end">
+        <% log.state.forEach(el => { %>
+        <br><%= el.state %>
+        by <%= el.by %>
+        <% }) %>
+        <br>
+        <% log.ActualDetails.forEach(el => { %>
+        <br>
+        bags :<%= el.bags %>
+        qt :<%= el.qt %>
+        rate :<%= el.rate %> <br>
+         naration :<%= el.naration %>
+        <% }) %>
+      </span>
+    </div>
+
+    <div class="ps-3 pb-2 mt-2">
+      <details>
+        <summary style="display: block;">
+          gp no :<%= log.gatepass_no.split('-',3)[2] %> <br>
+
+        </summary>
+        <p>
+          date :<%= log.date.getDate() + log.date.getFullYear() %> <br>
+          broker :<%= log.broker %> <br>
+          <br>
+          <%= log %> <br>
+
+        </p>
+      </details>
+
+    </div>
+  </div>
+  <% }) %>
+
 
   <div class="p-0 container-fluid bg-light mt-2" style="font-size:14px;font-weight: 400;" id="log">
     <div class="navbar navbar-dark bg-info  container-fluid mt-0 text-dark">
@@ -35,10 +110,10 @@
         <summary style="display: block;"> Epcot Center</summary>
         <p class="mt-2">Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
           pavilions, award-winning fireworks and seasonal special events.</p>
-          <form action="/in" method="post">
-             <input type="text">
-            
-          </form>
+        <form action="/in" method="post">
+          <input type="text">
+
+        </form>
       </details>
     </div>
   </div>
