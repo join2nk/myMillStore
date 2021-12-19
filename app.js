@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 //home route
 app.get('/', (req, res) => {
   // res.send(JSON.stringify({hello:"hello"}))
-  res.redirect("/arwa")
+  res.render('home')
 })
 app.post('/', (req, res) => {
   // res.send(JSON.stringify({hello:"hello"}))

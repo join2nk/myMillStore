@@ -1,7 +1,4 @@
-<% console.log(labLogs); %> 
 <% labLogs = labLogs.reverse() %>
-
-<% console.log(labLogs) %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +13,7 @@
 </head>
 
 <body>
-
+  <%= labLogs %> 
   <div class="navbar navbar-dark bg-dark">
     <div class="ms-2 navbar-brand">
       Arwa Lab
@@ -30,11 +27,11 @@
     <br>
     <p>
       <span class="fw-bold">Date :</span><input class=" ms-3 btn-sm p-3 py-0 btn-dark border-0 btn-light" type="button" id="state"
-        value="<%= labLogs[0].date.toLocaleDateString() %>"> <br>
-      Husker : <%= labLogs[0].broken.h[0] %> <br>
-      Whitner 1 : <%= labLogs[0].broken.h[0] %> <br>
-      Whitner 2 : <%= labLogs[0].broken.h[0] %> <br>
-      Husker : <%= labLogs[0].broken.h[0] %> <br> 
+        value="<%= labLogs[0]?.date.toLocaleDateString() %>"> <br>
+      Husker : <%= labLogs[0]?.broken.h[0] %> <br>
+      Whitner 1 : <%= labLogs[0]?.broken.h[0] %> <br>
+      Whitner 2 : <%= labLogs[0]?.broken.h[0] %> <br>
+      Husker : <%= labLogs[0]?.broken.h[0] %> <br> 
       
     </p>
     <div class="d-grid gap-2 d-flex justify-content-end">

@@ -41,33 +41,7 @@ const gatepass = new mongoose.Schema({
   broker: String,
   party: String,
   truck: String,
-  hemal: String,
-  state: [{
-    state:String,//outfordo, in, loading/unloading, gatepass, out, payemnt_clear
-    by:String,
-    at:{type:Date,default:new Date()}
-  }],
   gatepassGroup: String,
-  sauda: Boolean,
-  do_number_sauda_no: String,
-  billDetails: [{
-    itemName: String,
-    itemCatigory:String,
-    itemNaration:String,
-    Rate:Number,
-    bags:Number,
-    qt:Number,
-    alternateUnitName:String,
-  }],
-  ActualDetails: [{
-    itemName: String,
-    itemCatigory:String,
-    itemNaration:String,
-    Rate:Number,
-    bags:Number,
-    qt:Number,
-    alternateUnitName:String,
-  }],
   naration:String
 })
 
