@@ -1,0 +1,58 @@
+<%- include('./partials/header') -%>
+
+<form action="/branreport" method="post" autocomplete="off" class="m-0 p-0 container-fluid">
+  <details class="bg-light p-2 border" id="details">
+    <summary style='list-style:none'>
+      <h6 class="bg-dark rounded p-2 text-light shadow" id="headingnewlog">BRAN REPORT FORM</h6>
+      <input type="text" id="toggledetails" value="1" class="d-none">
+    </summary>
+    <p class="p-4 pt-1">
+
+      party :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="party" id=""> <br>
+      broker :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id=""> <br>
+      <!-- logTime :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="logTime" id=""> <br> -->
+      sampleDate :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="">
+      <br>
+      bags :<br><input style="background-color: bisque;border-radius: 5px;" type="tel" name="bags" id=""> <br>
+      branReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="branReport" id="">
+      <br>
+      plantBranReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text"
+        name="plantBranReport" id=""> <br>
+      naration :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="naration" id=""> <br>
+      user :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="user" id=""> <br>
+
+      <input type="submit" value="submit" class="btn btn-primary m-4">
+    </p>
+  </details>
+</form>
+
+<div class="container-fluid bg-light mt-2" style="font-size: smaller;">
+  <table>
+    <tr>
+      <td>Date</td>
+      <td>party</td>
+      <td>broker</td>
+      <td>sumit report</td>
+      <td>plant report</td>
+    </tr>
+    <% logs?.forEach(log => { %>
+      <tr>
+        <td><%= log.sampleDate.getDate() %>/<%= log.sampleDate.getMonth()+1 %></td>
+        <td><%= log.party %></td>
+        <td><%= log.broker %></td>
+        <td><%= log.branReport %></td>
+        <td><%= log.plantBranReport %></td>
+      </tr>
+
+    <% }) %>
+  </table>
+</div>
+
+<style>
+  input {
+    border: none;
+    border-bottom: 1px solid black;
+  }
+</style>
+
+<%- include('./partials/footer') -%>

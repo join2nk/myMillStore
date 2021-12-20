@@ -31,6 +31,8 @@ app.use('/arwa', arwamillRouter)
 const gatepassRouter = require(__dirname+"/server/routes/gatepassRouter")
 app.use('/gatepass', gatepassRouter)
 
+const branReportRouter = require(__dirname+"/server/routes/branReportRouter")
+app.use('/branreport', branReportRouter)
 
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
 
