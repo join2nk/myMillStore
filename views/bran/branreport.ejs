@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<%- include('./partials/navbar') -%>
+<%- include('../partials/navbar') -%>
 
 <form action="/branreport" method="post" autocomplete="off" class="m-0 p-0 container-fluid">
   <details class="bg-light p-2 border " id="details">
@@ -44,7 +44,7 @@
     </p>
   </details>
 </form>
-
+<% logs = logs.reverse() %> 
 <div class="container-fluid bg-light mt-2 py-2 d-flex " style="font-size: 14px;align-items: center;justify-content: center;">
   <table>
     <tr style="font-size: 12px; font-weight: 800;">
@@ -60,25 +60,27 @@
     <% logs?.forEach(log => { %>
       <tr>
         <td><%= log.sampleDate.getDate() %>/<%= log.sampleDate.getMonth()+1 %></td>
-        <td><%= (log.refno || '<i>nill<i>') %></td>
+        <td><%= (log.refno || 'nill') %></td>
         <td><%= log.party %></td>
         <td><%= log.broker %></td>
         <td><%= log.bags %></td>
         <td><%= log.branReport %></td>
         <td><%= (log.plantBranReport ||' - ') %></td>
-        <td><a href="/branreport/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>
+        <td><a href="/branreport/obj_id/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>
       </tr>
     <% }) %>
   </table>
 </div>
 
 <style>
+  td{
+    padding-left: 3px;
+  }
   input {
     border: none;
     border-bottom: 1px solid black;
   }
 </style>
-<script src="./scripts/scripts.js"></script>
 </body>
 
 </html>
