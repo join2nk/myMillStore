@@ -8,9 +8,9 @@ const getHome = async (req, res) => {
 }
 const postBranReport = async (req, res) => {
   //let logs = await GateLogs.find({})  
-  let [party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user] = [req.body.party,req.body.broker,req.body.logTime,req.body.sampleDate,req.body.bags,req.body.branReport,req.body.plantBranReport,req.body.naration,req.body.user]
+  let [refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user] = [req.body.refno,req.body.party,req.body.broker,req.body.logTime,req.body.sampleDate,req.body.bags,req.body.branReport,req.body.plantBranReport,req.body.naration,req.body.user]
 
-   let report = new BranReport({party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user})
+   let report = new BranReport({refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user})
   
   report.save((err,report)=>{
     if (err){

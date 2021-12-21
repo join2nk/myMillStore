@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+<%- include('./partials/navbar') -%>
 
 <form action="/branreport" method="post" autocomplete="off" class="m-0 p-0 container-fluid">
   <details class="bg-light p-2 border " id="details">
@@ -26,12 +26,13 @@
     </summary>
     <p class="p-4 pt-1 " style="">
 
-      party :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="party" id=""> <br>
-      broker :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id=""> <br>
+      refno :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="refno" id=""> <br>
+      party* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="party" id=""> <br>
+      broker* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id=""> <br>
       <!-- logTime :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="logTime" id=""> <br> -->
-      sampleDate :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="">
+      sampleDate* :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="">
       <br>
-      bags :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="bags" id=""> <br>
+      bags* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="bags" id=""> <br>
       branReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="branReport" id="">
       <br>
       plantBranReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text"
@@ -44,12 +45,14 @@
   </details>
 </form>
 
-<div class="container-fluid bg-light mt-2 d-flex " style="font-size: 14px;align-items: center;justify-content: center;">
+<div class="container-fluid bg-light mt-2 py-2 d-flex " style="font-size: 14px;align-items: center;justify-content: center;">
   <table>
-    <tr>
+    <tr style="font-size: 12px; font-weight: 800;">
       <td class="px-1">Date</td>
+      <td class="px-1">RefNo</td>
       <td class="px-1">Party</td>
       <td class="px-1">Broker</td>
+      <td class="px-1">Bags</td>
       <td class="px-1">Oil Report</td>
       <td class="px-1">Plant Report</td>
       <td class="px-1">Edit</td>
@@ -57,8 +60,10 @@
     <% logs?.forEach(log => { %>
       <tr>
         <td><%= log.sampleDate.getDate() %>/<%= log.sampleDate.getMonth()+1 %></td>
+        <td><%= (log.refno || '<i>nill<i>') %></td>
         <td><%= log.party %></td>
         <td><%= log.broker %></td>
+        <td><%= log.bags %></td>
         <td><%= log.branReport %></td>
         <td><%= (log.plantBranReport ||' - ') %></td>
         <td><a href="/branreport/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>

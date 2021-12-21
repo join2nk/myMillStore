@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const branReportSchema = new mongoose.Schema({
+  refno:Number,
   party: {
     type: String,
     required: true
