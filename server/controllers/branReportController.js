@@ -4,7 +4,7 @@ const BranReport = require("../models/branReportModel.js")
 
 const getHome = async (req, res) => {
   let logs = await BranReport.find({})  
-  res.render("branreport",{logs})
+  res.render("bran/branreport",{logs})
 }
 const postBranReport = async (req, res) => {
   //let logs = await GateLogs.find({})  
@@ -23,8 +23,15 @@ const postBranReport = async (req, res) => {
   
 }
 
+const edit = async (req, res) => {
+  let _id = req.params.id
+  let logs = await BranReport.find({_id})  
+  res.render("bran/editbyid",{logs})
+}
+
 
 module.exports = {
   getHome,
-  postBranReport
+  postBranReport,
+  edit
 };
