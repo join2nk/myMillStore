@@ -26,22 +26,16 @@
       </summary>
       <p class="p-4 pt-1 " style="">
 
-        refno :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="refno" id="" value="<%= (logs[0].refno) %> "> <br>
-        party* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="party" id="" value="<%= (logs[0].party) %> "> <br>
-        broker* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id="" value="<%= (logs[0].broker) %> "> <br>
+        refno :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="refno" id="" value="<%= (logs[0].refno) %>"> <br>
+        party* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="party" id="" value="<%= (logs[0].party) %>"> <br>
+        broker* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id="" value="<%= (logs[0].broker) %>"> <br>
         <!-- logTime :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="logTime" id=""> <br> -->
-        <%= logs[0].sampleDate.toLocaleDateString() %> 
-        sampleDate* :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="" value="<%= (logs[0].sampleDate.getYear()+1900) %>-<%= ((logs[0].sampleDate.getMonth()+1>=10)?logs[0].sampleDate.getMonth()+1:'0'+(logs[0].sampleDate.getMonth()+1)) %>-<%= (logs[0].sampleDate.getDate()) %>">
-        
-        <br>
-        bags* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="bags" id="" value="<%= (logs[0].bags) %> "> <br>
-        branReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="branReport" id="" value="<%= (logs[0].branReport) %> ">
-        <br>
-        plantBranReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text"
-          name="plantBranReport" id="" value="<%= (logs[0].plantBranReport) %> "> <br>
-        naration :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="naration" id="" value="<%= (logs[0].naration) %> "> <br>
-        user :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="user" id="" value="<%= (logs[0].user) %> "> <br>
-
+        sampleDate* :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="" value="<%= (logs[0].sampleDate.getYear()+1900) %>-<%= ((logs[0].sampleDate.getMonth()+1>=10)?logs[0].sampleDate.getMonth()+1:'0'+(logs[0].sampleDate.getMonth()+1)) %>-<%= (logs[0].sampleDate.getDate()) %>"><br>
+        bags* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="bags" id="" value="<%= (logs[0].bags) %>"> <br>
+        branReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="branReport" id="" value="<%= (logs[0].branReport) %>"><br>
+        plantBranReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="plantBranReport" id="" value="<%= (logs[0].plantBranReport) %>"> <br>
+        naration :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="naration" id="" value="<%= (logs[0].naration) %>"> <br>
+        user :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="user" id="" value="<%= (logs[0].user) %>"> <br>
         <input type="submit" value="submit" class="btn btn-primary m-4">
       </p>
     </div>
