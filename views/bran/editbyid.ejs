@@ -31,7 +31,7 @@
         broker* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id="" value="<%= (logs[0].broker) %>"> <br>
         <!-- logTime :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="logTime" id=""> <br> -->
         sampleDate* :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="" 
-        value="<%= (logs[0].sampleDate?.getYear()+1900) %>-<%= ((logs[0].sampleDate?.getMonth()+1>=10)||'0'+(logs[0].sampleDate?.getMonth()+1)) %>-<%= (logs[0].sampleDate?.getDate()) %>"><br>
+        value="<%= (logs[0].sampleDate?.getYear()+1900) %>-<%= ((logs[0].sampleDate?.getMonth()+1>=10)?logs[0].sampleDate?.getMonth()+1:'0'+(logs[0].sampleDate?.getMonth()+1)) %>-<%= (logs[0].sampleDate?.getDate()) %>"><br>
         bags* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="bags" id="" value="<%= (logs[0].bags) %>"> <br>
         branReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="branReport" id="" value="<%= (logs[0].branReport) %>"><br>
         plantBranReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="plantBranReport" id="" value="<%= (logs[0].plantBranReport) %>"> <br>
