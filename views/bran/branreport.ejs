@@ -59,7 +59,7 @@
     </tr>
     <% logs?.forEach(log => { %>
       <tr>
-        <td><%= log.sampleDate.getDate() %>/<%= log.sampleDate.getMonth()+1 %></td>
+        <td><%= log.sampleDate?.getDate() || 'nill' %>/<%= log.sampleDate?.getMonth()+1 %></td>
         <td><%= (log.refno || 'nill') %></td>
         <td><%= log.party %></td>
         <td><%= log.broker %></td>
