@@ -13,7 +13,8 @@ const branReportSchema = new mongoose.Schema({
   logTime: {type:Date,default:new Date()},
   sampleDate:{
     type: Date,
-    required: true
+    required: true,
+    default:new Date
   },
   bags:{
     type: Number,
