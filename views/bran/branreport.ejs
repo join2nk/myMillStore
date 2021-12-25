@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href=" /css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <title>Document</title>
 </head>
 
@@ -19,26 +19,25 @@
 <%- include('../partials/navbar') -%>
 
 <form action="/branreport" method="post" autocomplete="off" class="m-0 p-0 container-fluid">
-  <details class="bg-light p-2 border " id="details">
+  <details open class="bg-light p-2 border " id="details">
     <summary style='list-style:none'>
       <h6 class="bg-dark rounded p-2 text-light shadow" id="headingnewlog">BRAN REPORT FORM</h6>
-      <input type="text" id="toggledetails" value="1" class="d-none">
     </summary>
     <p class="p-4 pt-1 " style="">
 
-      refno :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="refno" id=""> <br>
-      party* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="party" id=""> <br>
-      broker* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="broker" id=""> <br>
-      <!-- logTime :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="logTime" id=""> <br> -->
-      sampleDate* :<br><input style="background-color: bisque;border-radius: 5px;" type="date" name="sampleDate" id="">
+      refno :<br><input name="refno" id=""> <br>
+      party* :<br><input name="party" id=""> <br>
+      broker* :<br><input name="broker" id=""> <br>
+      <!-- logTime :<br><input   name="logTime" id=""> <br> -->
+      sampleDate* :<br><inputtype="date" name="sampleDate" id="">
       <br>
-      bags* :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="bags" id=""> <br>
-      branReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="branReport" id="">
+      bags* :<br><input  name="bags" id=""> <br>
+      branReport :<br><input name="branReport" id="">
       <br>
-      plantBranReport :<br><input style="background-color: bisque;border-radius: 5px;" type="text"
+      plantBranReport :<br><input  
         name="plantBranReport" id=""> <br>
-      naration :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="naration" id=""> <br>
-      user :<br><input style="background-color: bisque;border-radius: 5px;" type="text" name="user" id=""> <br>
+      naration :<br><input name="naration" id=""> <br>
+      user :<br><input name="user" id=""> <br>
 
       <input type="submit" value="submit" class="btn btn-primary m-4">
     </p>
@@ -64,7 +63,7 @@
         <td><%= log.party %></td>
         <td><%= log.broker %></td>
         <td><%= log.bags %></td>
-        <td><%= log.branReport %></td>
+        <td><%= log.branReport || ' -' %></td>
         <td><%= (log.plantBranReport ||' - ') %></td>
         <td><a href="/branreport/obj_id/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>
       </tr>
@@ -72,15 +71,6 @@
   </table>
 </div>
 
-<style>
-  td{
-    padding-left: 3px;
-  }
-  input {
-    border: none;
-    border-bottom: 1px solid black;
-  }
-</style>
 </body>
 
 </html>
