@@ -8,7 +8,7 @@ const getHome = async (req, res) => {
 }
 const postBranReport = async (req, res) => {
   //let logs = await GateLogs.find({})  
-  let [refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user] = [req.body.refno,req.body.party,req.body.broker,req.body.logTime,req.body.sampleDate,req.body.bags,req.body.branReport,req.body.plantBranReport,req.body.naration,req.body.user]
+  let {refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user} = req.body
 
    let report = new BranReport({refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user})
   
@@ -29,7 +29,7 @@ const edit = async (req, res) => {
   res.render("bran/editbyid",{logs})
 }
 const editPost = async (req, res) => {
-  let [refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user] = [req.body.refno,req.body.party,req.body.broker,req.body.logTime,req.body.sampleDate,req.body.bags,req.body.branReport,req.body.plantBranReport,req.body.naration,req.body.user]
+  let {refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user} = req.body
   
   let _id = req.params.id
   await BranReport.updateOne({_id:{$eq:_id}},{refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user}) 
