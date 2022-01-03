@@ -24,7 +24,7 @@
         <% let month = ((logs[0].sampleDate?.getMonth()+1>=10)?logs[0].sampleDate?.getMonth()+1:'0'+(logs[0].sampleDate?.getMonth()+1)) %>
         <% let day = (logs[0].sampleDate?.getDate()>10?logs[0].sampleDate?.getDate():'0'+logs[0].sampleDate?.getDate()) %>
         <% let date = `${year}-${month}-${day}` %> 
-        <%=year%>-<%=month%>-<%=day%>
+
         <p class="p-4 pt-1 ">
           refno :<br><input name="refno" value="<%= (logs[0].refno) %>"> <br>
           party* :<br><input name="party" value="<%= (logs[0].party) %>" required> <br>
