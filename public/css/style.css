@@ -1,11 +1,12 @@
 td {
-  font-size: small;
+  padding: 3px;
 }
 
 #clock {
   font-size: large;
 }  
-td{
+tr{
+
 }
 
 .delbtn{
