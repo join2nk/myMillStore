@@ -4,8 +4,11 @@ require("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
 const path = require('path')
+const _ = require("lodash");
 
 const app = express()
+
+app.locals._ = _;
 
 mongoose.connect(process.env.MONGODB, (e) => {if(e){console.log(e + '\n-----Error')}else{console.log("database connected nk")}})
 
