@@ -1,0 +1,16 @@
+td {
+}
+
+#clock {
+  font-size: large;
+}  
+td{
+  padding-left: 3px;
+}
+
+.delbtn{
+  position:relative;bottom: 111px;left: 200px;
+}
+.h-0{
+  height: 0px;
+}

@@ -23,13 +23,14 @@
         <% let year = (logs[0].sampleDate?.getYear()+1900) %>
         <% let month = ((logs[0].sampleDate?.getMonth()+1>=10)?logs[0].sampleDate?.getMonth()+1:'0'+(logs[0].sampleDate?.getMonth()+1)) %>
         <% let day = (logs[0].sampleDate?.getDate()>10?logs[0].sampleDate?.getDate():'0'+logs[0].sampleDate?.getDate()) %>
-        
+        <% let date = `${year}-${month}-${day}` %> 
+        <%=year%>-<%=month%>-<%=day%>
         <p class="p-4 pt-1 ">
           refno :<br><input name="refno" value="<%= (logs[0].refno) %>"> <br>
           party* :<br><input name="party" value="<%= (logs[0].party) %>" required> <br>
           broker* :<br><input name="broker" value="<%= (logs[0].broker) %>" required> <br>
           <!-- logTime :<input name="logTime" id=""> <br> -->
-          sampleDate* :<br><input type="date" name="sampleDate" value='<%=year%>-<%=month%>-<%=day%>' required ><br>
+          sampleDate* :<br><input type="date" name="sampleDate" value='<%=date%>' required ><br>
           bags* :<br><input name="bags" value="<%= (logs[0].bags) %>" inputmode="numeric"> <br>
           branReport :<br><input name="branReport" value="<%= (logs[0].branReport) %>" inputmode="numeric"><br>
           plantBranReport :<br><input name="plantBranReport" value="<%= (logs[0].plantBranReport) %>" inputmode="numeric"> <br>
