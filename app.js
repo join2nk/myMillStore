@@ -19,23 +19,14 @@ app.use(express.static(__dirname+'/public'));
 // app.use(cookieParser())
 app.set('view engine', 'ejs');
 
+
+
 //home route
-app.get('/', (req, res) => {
-  // res.send(JSON.stringify({hello:"hello"}))
-  res.render('home')
-})
-app.post('/', (req, res) => {
-  // res.send(JSON.stringify({hello:"hello"}))
-  res.redirect("/arwa")
-})
-const arwamillRouter = require(__dirname+"/server/routes/arwamillRoutes")
-app.use('/arwa', arwamillRouter)
+const root = require('./server/routers/index')
+app.use('/',root)
 
-const gatepassRouter = require(__dirname+"/server/routes/gatepassRouter")
-app.use('/gatepass', gatepassRouter)
 
-const branReportRouter = require(__dirname+"/server/routes/branReportRouter")
-app.use('/branreport', branReportRouter)
+
 
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
 

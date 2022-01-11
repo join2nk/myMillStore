@@ -19,205 +19,264 @@
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
   </script>
-  <!-- fonts ---------------------------------------------------------------------- ------------------ -->
+  <!-- --------------------------------------------fonts ----------------------------------------------------- -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,800&display=swap"
     rel="stylesheet">
+  <!-- google fonts link  -->
+  <link href='https://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
 
+  <!-- ---------------------------------------------vue-------------------------------------------------------- -->
+  <script defer src="https://unpkg.com/vue@next"></script>
 
   <!-- ---------------------------------------------------custom styles----------------------------------- -->
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/scripts.js"></script>
 
 
   <title>Bran report</title>
 </head>
 
 <body>
-  <%- include('../partials/navbar',{title:'BRAN REPORT REGISTER'}) -%>
+
   <% logs = logs.reverse() %>
   <% let year = (logs[0].sampleDate?.getYear()+1900) %>
   <% let month = ((logs[0].sampleDate?.getMonth()+1>=10)?logs[0].sampleDate?.getMonth()+1:'0'+(logs[0].sampleDate?.getMonth()+1)) %>
   <% let day = (logs[0].sampleDate?.getDate()>10?logs[0].sampleDate?.getDate():'0'+logs[0].sampleDate?.getDate()) %>
   <% let date = `${year}-${month}-${day}` %>
 
-  <!-- -------------------------------------------mini nav tabs -------------------------------------- -->
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
-        aria-controls="home" aria-selected="true">
-        Form
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
-        aria-controls="profile" aria-selected="false">
-        Tabel
-      </button>
-    </li>
+  <input id="ejsdata" type="text" class="d-none" value="<%= JSON.stringify(logs) %>">
+ 
 
-    <!-- li not dispalyed saved for later sintax ref -->
-    <li class="nav-item d-none" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
-        aria-controls="contact" aria-selected="false">Contact</button>
-    </li>
-  </ul>
 
-  <!-- ---------------------------------------------form seciton-------------------------------- -->
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <details class="card my-3 p-3 ">
-        <summary style="list-style-type: none;">
 
-          <u><b> Last Entry:: </b></u>
-        </summary>
-        <p>
 
-          <div class="d-flex flex-row">
-            <div class="col p-0 m-0">Reff no: <%= logs[0].refno %> </div>
-            <div class="col p-0 m-0">Date: <%= date %> </div>
+
+
+
+  <div id="app" class="d-none" >
+    
+    <div >
+        <!-- --------------------------------------------nav bar--------------------------------------------- -->
+      <div class="navbar navbar-dark bg-dark absalute text-light">
+        <div class="container">
+          <a href="#" class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
+            Bran Register</a>
+          <div>
+            <i class="bi bi-caret-down"></i>
           </div>
-          <div class="d-flex flex-row">
-            <div class="col p-0 m-0">Party: <%= logs[0].party %> </div>
-            <div class="col p-0 m-0">Broker: <%= logs[0].broker %> </div>
-          </div>
-          <hr class="m-0 mb-1">
-          <div class="d-flex flex-row">
-            <div class="col p-0 m-0">Oil %: <%= logs[0].branReport %> </div>
-            <div class="col p-0 m-0">Bags: <%= logs[0].bags %> </div>
-          </div>
-          <div class="col-6"></div>
-          <div class="d-flex flex-row">
-          </div>
-        </p>
-      </details>
+          <div class="float-end position-relative">
+            <div class="btn text-light " :class="[navshow? 'btn-outline-secondary':'' ]" @click="navshow =!navshow">
+              <svg v-show="!navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
+              </svg><svg v-show="navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z" />
+              </svg>
+            </div>
+            <div class="container">
+              <div class=" d-flex flex-column float-end  justify-content-around  small card nav-dropdown "
+                v-if="navshow">
 
-      <form action="/branreport" method="post" autocomplete="off" class=" m-5">
-        <small>
-
-          <div class="mb-2">
-            <label class="form-label" for="refnoinput"> Reff no :</label>
-            <input type="number" class="form-control" name="refno" id="refnoinput" placeholder="number">
-            <small class="text-muted">Truck number / gp no / rstno etc...</small>
+                <div v-for="(link,i) in dashLinks" class=" ">
+                  <a class="text-decoration-none " :href="link.link">
+                    <div class="py-2 link-dark px-4 bg-light">
+                      {{link.label}}
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="mb-2">
-            <label class="form-labels" for="partyinput"> Party</label>
-            <input type="text" class="form-control" name="party" id="partyinput" required>
-            <small class="text-muted ">*required</small>
 
-          </div>
+      <!-- -------------------------------------------mini nav tabs -------------------------------------- -->
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+            role="tab" aria-controls="home" aria-selected="true">
+            Form
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+            role="tab" aria-controls="profile" aria-selected="false">
+            Tabel
+          </button>
+        </li>
 
-          <div class="mb-2">
-            <label class="form-labels" for="refno"> Broker </label>
-            <input type="text" class="form-control" name="broker" id="brokerinput" required>
-            <small class="text-muted">*required</small>
-          </div>
+        <!-- li not dispalyed saved for later sintax ref -->
+        <li class="nav-item d-none" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+            role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+        </li>
+      </ul>
 
-          <!-- logTime :<br><input   name="logTime" id=""> <br> -->
-          <div class="mb-2">
-            <label class="form-labels" for="refno"> Sample Date </label>
-            <input type="date" class="form-control" name="sampleDate" required id="sampleDateinput">
-            <small class="text-muted">*required</small>
-          </div>
+      <!-- ---------------------------------------------form seciton-------------------------------- -->
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-          <!-- <div class="mb-2">
+          <details class="card my-3 p-3 ">
+            <summary style="list-style-type: none;">
+
+              <u><b> Last Entry:: </b></u>
+            </summary>
+            <p>
+
+              <div class="d-flex flex-row">
+                <div class="col p-0 m-0">Reff no: <%= logs[0].refno %> </div>
+                <div class="col p-0 m-0">Date: <%= date %> </div>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="col p-0 m-0">Party: <%= logs[0].party %> </div>
+                <div class="col p-0 m-0">Broker: <%= logs[0].broker %> </div>
+              </div>
+              <hr class="m-0 mb-1">
+              <div class="d-flex flex-row">
+                <div class="col p-0 m-0">Oil %: <%= logs[0].branReport %> </div>
+                <div class="col p-0 m-0">Bags: <%= logs[0].bags %> </div>
+              </div>
+              <div class="col-6"></div>
+              <div class="d-flex flex-row">
+              </div>
+            </p>
+          </details>
+
+          <form action="/branreport" method="post" autocomplete="off" class=" m-5">
+            <small>
+
+              <div class="mb-2">
+                <label class="form-label" for="refnoinput"> Reff no :</label>
+                <input type="number" class="form-control" name="refno" id="refnoinput" placeholder="number">
+                <small class="text-muted">Truck number / gp no / rstno etc...</small>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-labels" for="partyinput"> Party</label>
+                <input type="text" class="form-control" name="party" id="partyinput" required>
+                <small class="text-muted ">*required</small>
+
+              </div>
+
+              <div class="mb-2">
+                <label class="form-labels" for="refno"> Broker </label>
+                <input type="text" class="form-control" name="broker" id="brokerinput" required>
+                <small class="text-muted">*required</small>
+              </div>
+
+              <!-- logTime :<br><input   name="logTime" id=""> <br> -->
+              <div class="mb-2">
+                <label class="form-labels" for="refno"> Sample Date </label>
+                <input type="date" class="form-control" name="sampleDate" required id="sampleDateinput">
+                <small class="text-muted">*required</small>
+              </div>
+
+              <!-- <div class="mb-2">
           <label for="" class="form-label">bags</label>
           <input type="number" class="form-control" name="bags" required id="bagsinput">
           <small class="text-muted">*required</small>
         </div> -->
 
 
-          <!-- bags* :<br><input name="bags" id=""> <br> -->
-          <div class="mb-2">
-            <label for="bagsinput" class="form-label">bags</label>
-            <input type="number" class="form-control" name="bags" required id="bagsinput">
-            <small class="text-muted">*required</small>
+              <!-- bags* :<br><input name="bags" id=""> <br> -->
+              <div class="mb-2">
+                <label for="bagsinput" class="form-label">bags</label>
+                <input type="number" class="form-control" name="bags" required id="bagsinput">
+                <small class="text-muted">*required</small>
 
-          </div>
+              </div>
 
-          <div class="mb-2">
-            <label for="branReportinput" class="form-label">Bran Report</label>
-            <input type="number" class="form-control" name="branReport" id="branReportinput">
-          </div>
-          <div class="mb-2">
-            <label for="plantBranReportinput" class="form-label">Plant Bran Report</label>
-            <input type="number" class="form-control" name="plantBranReport" id="plantBranReportinput">
-          </div>
-          <div class="mb-2">
-            <label for="narationinput" class="form-label">narration</label>
-            <input type="text" class="form-control" name="naration" id="narationinput">
-          </div>
-          <div class="mb-2">
-            <label for="user" class="form-label">user</label>
-            <input type="text" class="form-control" name="user" id="userinput">
-          </div>
-        </small>
+              <div class="mb-2">
+                <label for="branReportinput" class="form-label">Bran Report</label>
+                <input type="number" class="form-control" name="branReport" id="branReportinput">
+              </div>
+              <div class="mb-2">
+                <label for="plantBranReportinput" class="form-label">Plant Bran Report</label>
+                <input type="number" class="form-control" name="plantBranReport" id="plantBranReportinput">
+              </div>
+              <div class="mb-2">
+                <label for="narationinput" class="form-label">narration</label>
+                <input type="text" class="form-control" name="naration" id="narationinput">
+              </div>
+              <div class="mb-2">
+                <label for="user" class="form-label">user</label>
+                <input type="text" class="form-control" name="user" id="userinput">
+              </div>
+            </small>
 
 
-        <!-- 
+            <!-- 
         branReport :<br><input name="branReport" id="">
         <br>
         plantBranReport :<br><input name="plantBranReport" id=""> <br>
         naration :<br><input name="naration" id=""> <br>
         user :<br><input name="user" id=""> <br> -->
 
-        <input type="submit" value="submit" class="btn btn-primary m-4">
-      </form>
-    </div>
+            <input type="submit" value="submit" class="btn btn-primary m-4">
+          </form>
+        </div>
 
-    <!-- ------------------------------ table seciton --------------------------------------------- -->
-    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <div class="container-fluid">
-        <table class="table-bordered mt-5 m-auto">
-          <thead class="bg-secondary">
+        <!-- ------------------------------ table seciton --------------------------------------------- -->
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="container-fluid">
+            <table class="table-bordered mt-5 m-auto">
+              <thead class="bg-secondary">
 
-            <tr style="font-size: 12px; font-weight: 800;">
-              <td>Date</td>
-              <td>RefNo</td>
-              <td>Party</td>
-              <td>Broker</td>
-              <td>Bags</td>
-              <td>Oil %</td>
-              <td>Plant </td>
-              <td>Edit</td>
-            </tr>
-          </thead>
-          <tbody>
+                <tr style="font-size: 12px; font-weight: 800;">
+                  <td>Date</td>
+                  <td>RefNo</td>
+                  <td>Party</td>
+                  <td>Broker</td>
+                  <td>Bags</td>
+                  <td>Oil %</td>
+                  <td>Plant </td>
+                  <td>Edit</td>
+                </tr>
+              </thead>
+              <tbody>
 
-            <% logs?.forEach(log => { %>
+                <% logs?.forEach(log => { %>
 
-            <tr>
-              <td><%= log.sampleDate?.getDate() || 'nill' %>/<%= log.sampleDate?.getMonth()+1 %></td>
-              <td><%= (log.refno || 'nill') %></td>
-              <td><%= log.party %></td>
-              <td><%= log.broker %></td>
-              <td><%= log.bags %></td>
-              <td><%= log.branReport || ' -' %></td>
-              <td><%= (log.plantBranReport ||' - ') %></td>
-              <td><a href="/branreport/obj_id/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>
-            </tr>
-            <% }) %>
-          </tbody>
-          <tfoot>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tfoot>
-        </table>
+                <tr>
+                  <td><%= log.sampleDate?.getDate() || 'nill' %>/<%= log.sampleDate?.getMonth()+1 %></td>
+                  <td><%= (log.refno || 'nill') %></td>
+                  <td><%= log.party %></td>
+                  <td><%= log.broker %></td>
+                  <td><%= log.bags %></td>
+                  <td><%= log.branReport || ' -' %></td>
+                  <td><%= (log.plantBranReport ||' - ') %></td>
+                  <td><a href="/branreport/obj_id/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>
+                </tr>
+                <% }) %>
+              </tbody>
+              <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tfoot>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="tab-pane fade d-none" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
   </div>
-
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 const express = require('express');
-const  branReportController = require("../controllers/branReportController");
+const  branReportController = require("../../controllers/branReportController");
 
 const router = express.Router();
 
