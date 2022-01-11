@@ -4,9 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="manifest" href="/manifest/branReport_manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- bootstrap-->
+
+  <!-- -------------------------------------------app manisfest------------------------------------------ -->
+  <link rel="manifest" href="/manifest/branReport_manifest.json">
+
+
+  <!-- ------------------------------- bootstrap--------------------------------------------------- -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -15,15 +19,18 @@
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
   </script>
-  <!-- fonts -->
+  <!-- fonts ---------------------------------------------------------------------- ------------------ -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,800&display=swap"
     rel="stylesheet">
 
 
-  <!-- custom styles -->
+  <!-- ---------------------------------------------------custom styles----------------------------------- -->
   <link rel="stylesheet" href="/css/style.css">
+
+
   <title>Bran report</title>
 </head>
 
@@ -35,7 +42,7 @@
   <% let day = (logs[0].sampleDate?.getDate()>10?logs[0].sampleDate?.getDate():'0'+logs[0].sampleDate?.getDate()) %>
   <% let date = `${year}-${month}-${day}` %>
 
-  <!-- mini nav tabs  -->
+  <!-- -------------------------------------------mini nav tabs -------------------------------------- -->
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
@@ -57,7 +64,7 @@
     </li>
   </ul>
 
-  <!-- form seciton -->
+  <!-- ---------------------------------------------form seciton-------------------------------- -->
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
@@ -86,8 +93,6 @@
           </div>
         </p>
       </details>
-
-
 
       <form action="/branreport" method="post" autocomplete="off" class=" m-5">
         <small>
@@ -163,9 +168,8 @@
       </form>
     </div>
 
+    <!-- ------------------------------ table seciton --------------------------------------------- -->
     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-      <!-- table seciton -->
       <div class="container-fluid">
         <table class="table-bordered mt-5 m-auto">
           <thead class="bg-secondary">
@@ -214,30 +218,6 @@
     <div class="tab-pane fade d-none" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <script>
-    let allInputs = document.querySelectorAll('input')
-    console.log(allInputs)
-    allInputs.forEach(input => {
-      input.innerHTML = `<button>log</button>`
-    });
-  </script>
 </body>
 
 </html>
