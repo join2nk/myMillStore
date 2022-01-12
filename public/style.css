@@ -31,3 +31,11 @@ nav{
 .dashcard{
   max-width: 40%;
 }
+
+.mytable{
+  columns: 9;
+}
+.edit{
+  position: absolute;
+  bottom:70px;
+}

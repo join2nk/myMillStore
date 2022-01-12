@@ -51,7 +51,6 @@
   <% let date = `${year}-${month}-${day}` %>
 
   <input id="ejsdata" type="text" class="d-none" value="<%= JSON.stringify(logs) %>">
- 
 
 
 
@@ -60,48 +59,47 @@
 
 
 
-  <div id="app" class="d-none" >
-    
-    <div >
-        <!-- --------------------------------------------nav bar--------------------------------------------- -->
-      <div class="navbar navbar-dark bg-dark absalute text-light">
-        <div class="container">
-          <a href="#" class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
-            Bran Register</a>
-          <div>
-            <i class="bi bi-caret-down"></i>
+
+  <div id="app" class="d-none">
+
+    <!-- --------------------------------------------nav bar--------------------------------------------- -->
+    <div class="navbar navbar-dark bg-dark absalute text-light">
+      <div class="container">
+        <a href="#" class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
+          Bran Register</a>
+        <div>
+          <i class="bi bi-caret-down"></i>
+        </div>
+        <div class="float-end position-relative">
+          <div class="btn text-light " :class="[navshow? 'btn-outline-secondary':'' ]" @click="navshow =!navshow">
+            <svg v-show="!navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
+            </svg><svg v-show="navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z" />
+            </svg>
           </div>
-          <div class="float-end position-relative">
-            <div class="btn text-light " :class="[navshow? 'btn-outline-secondary':'' ]" @click="navshow =!navshow">
-              <svg v-show="!navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
-              </svg><svg v-show="navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z" />
-              </svg>
-            </div>
-            <div class="container">
-              <div class=" d-flex flex-column float-end  justify-content-around  small card nav-dropdown "
-                v-if="navshow">
+          <div class="container">
+            <div class=" d-flex flex-column float-end  justify-content-around  small card nav-dropdown " v-if="navshow">
 
-                <div v-for="(link,i) in dashLinks" class=" ">
-                  <a class="text-decoration-none " :href="link.link">
-                    <div class="py-2 link-dark px-4 bg-light">
-                      {{link.label}}
-                    </div>
-                  </a>
-                </div>
+              <div v-for="(link,i) in dashLinks" class=" ">
+                <a class="text-decoration-none " :href="link.link">
+                  <div class="py-2 link-dark px-4 bg-light">
+                    {{link.label}}
+                  </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-
-      <!-- -------------------------------------------mini nav tabs -------------------------------------- -->
+    <!-- previous app -->
+    <div class="d-none">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
@@ -123,8 +121,9 @@
         </li>
       </ul>
 
-      <!-- ---------------------------------------------form seciton-------------------------------- -->
+
       <div class="tab-content" id="myTabContent">
+        <!-- ---------------------------------------------form seciton-------------------------------- -->
         <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
           <details class="card my-3 p-3 ">
@@ -183,10 +182,10 @@
               </div>
 
               <!-- <div class="mb-2">
-          <label for="" class="form-label">bags</label>
-          <input type="number" class="form-control" name="bags" required id="bagsinput">
-          <small class="text-muted">*required</small>
-        </div> -->
+            <label for="" class="form-label">bags</label>
+            <input type="number" class="form-control" name="bags" required id="bagsinput">
+            <small class="text-muted">*required</small>
+          </div> -->
 
 
               <!-- bags* :<br><input name="bags" id=""> <br> -->
@@ -217,11 +216,11 @@
 
 
             <!-- 
-        branReport :<br><input name="branReport" id="">
-        <br>
-        plantBranReport :<br><input name="plantBranReport" id=""> <br>
-        naration :<br><input name="naration" id=""> <br>
-        user :<br><input name="user" id=""> <br> -->
+          branReport :<br><input name="branReport" id="">
+          <br>
+          plantBranReport :<br><input name="plantBranReport" id=""> <br>
+          naration :<br><input name="naration" id=""> <br>
+          user :<br><input name="user" id=""> <br> -->
 
             <input type="submit" value="submit" class="btn btn-primary m-4">
           </form>
@@ -275,6 +274,81 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+    <div class="container my-3">
+      <h1 class="d-inline">Dash</h1>
+      <button class="btn btn-outline-primary float-end" @click="">+ Add new</button>
+
+    </div>
+    <hr>
+
+    <div class="container my-3 d-flex gap-2 justify-content-around align-items-center">
+      <div class="col-3">
+        <label>Filter by</label>
+        <select name="" id="" class="form-select">
+          <option value="" disabled selected>Filter By</option>
+          <option value="date">date</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label>Sort by</label>
+        <select name="" id="" class="form-select ">
+          <option value="date">date</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label>Search</label>
+        <input type="search" class="form-control ">
+      </div>
+      <div class="">
+        <button>clear all</button>
+      </div>
+    </div>
+    <hr>
+
+
+
+
+
+
+    <div style="overflow-x:auto;">
+      <table class="table">
+        <thead>
+          <tr class="align-baseline">
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reff. no</th>
+            <th scope="col">Party</th>
+            <th scope="col">Broker</th>
+            <th scope="col">Bags</th>
+            <th scope="col">Oil %</th>
+            <th scope="col">Plant</th>
+            <th scope="col">edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="position: relative;">
+            <th scope="row">1</th>
+            <td>11/12</td>
+            <td>23</td>
+            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
+            <td>vimal sharma</td>
+            <td>234k</td>
+            <td>18.4%</td>
+            <td>17.4%</td>
+            <td><button>edit</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
 
   </div>
 </body>

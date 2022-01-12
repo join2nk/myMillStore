@@ -10,13 +10,13 @@ var app = Vue.createApp({
       navshow: false,
       dashLinks: [{
         link: "zen/index.html",
-        label: "zen"
+        label: "Home"
       }, {
         link: "milling/milling.html",
-        label: "Milling"
+        label: "Milling Register"
       }, {
         link: "test/test.html",
-        label: "Test"
+        label: "Bran Register"
       }, {
         link: "milling_2/index.html",
         label: "Milling 2"
