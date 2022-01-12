@@ -1,16 +1,16 @@
-
-let data =  JSON.parse(document.querySelector('#ejsdata').value).reverse()
-data.forEach((d,i) => {
-  d.sno = i+1
+let dataMain = JSON.parse(document.querySelector('#ejsdata').value)
+dataMain.forEach((d, i) => {
+  d.sno = i + 1
 });
-console.log(data)
-document.querySelector('#ejsdata').remove() 
+console.log(dataMain)
+document.querySelector('#ejsdata').remove()
 
 
 var app = Vue.createApp({
   data() {
     return {
       navshow: false,
+      showForm: false,
       dashLinks: [{
         link: "zen/index.html",
         label: "Home"
@@ -24,24 +24,24 @@ var app = Vue.createApp({
         link: "milling_2/index.html",
         label: "Milling 2"
       }],
-      data:data
+      data: dataMain
     }
   },
   methods: {
-    month: function(date){
+    month: function (date) {
       let d = new Date(date)
-      let month = d.getMonth()+1
-      return d.getDate()+"/"+ month  
+      let month = d.getMonth() + 1
+      return d.getDate() + "/" + month
     },
-    log:(id)=>{
-      console.log(id);
+    redirect: (path) => {
+      window.location.href = path;
     }
-  },mounted:()=>{
+  },
+  mounted: () => {
     document.querySelector('#app').classList.remove('d-none')
   },
-  created(){}
-  
+  created() {}
+
 })
 
 app.mount("#app")
-

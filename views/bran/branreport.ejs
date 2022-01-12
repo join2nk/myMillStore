@@ -281,25 +281,31 @@
 
     <div class="container my-3">
       <h1 class="d-inline">Dash</h1>
-      <button class="btn btn-outline-primary float-end " @click="">+ Add new</button>
+      <button class="btn btn-outline-primary float-end " @click="showForm = !showForm" >
+        <span v-show="!showForm">+ Add new</span>
+        <span v-show="showForm">cancel</span>
+      </button>
     </div>
     <hr>
 
-    <div>
-      <details class="container m-0 py-1 bg-light">
+    <div class="">
+
+      <details class="container m-0 py-1 bg-light d-none">
         <summary dir="rtl">
           sort/ filter/search
         </summary>
         <p>
-          <div class=" d-flex gap-2 justify-content-around align-items-center ">
-            <div class="col-3 input-group-sm">
-              <label class="d-none">Filter by</label>
-              <select name="" id="" class="form-select">
+          <div class=" d-flex gap-2 justify-content-around align-items-end ">
+            <div class="col-6 input-group-sm">
+              <label class="">Month</label>
+              <!-- <select name="" id="" class="form-select d-none">
                 <option value="" disabled selected>Filter By</option>
                 <option value="date">date</option>
-              </select>
+              </select> -->
+              <input type="month" id="monthSelector" class="form-control">
+
             </div>
-            <div class="col-3 input-group-sm">
+            <div class="col-3 d-none input-group-sm">
               <label class="d-none">Sort by</label>
               <select name="" id="" class="form-select ">
                 <option value="" disabled selected>Sort By</option>
@@ -318,48 +324,68 @@
         </p>
       </details>
 
+      <form action="/branreport" method="post" v-show="showForm" autocomplete="off" class="m-0 p-0 container card">
+        <div class="bg-light p-2 border  ">
+          <p class="p-4 pt-1 ">
+            refno :<br><input name="refno"> <br>
+            party* :<br><input name="party" required> <br>
+            broker* :<br><input name="broker" required> <br>
+            <!-- logTime :<input name="logTime" id=""> <br> -->
+            sampleDate* :<br><input type="date" name="sampleDate" required><br>
+            bags* :<br><input name="bags" inputmode="numeric" required> <br>
+            branReport :<br><input name="branReport" inputmode="numeric"><br>
+            plantBranReport :<br><input name="plantBranReport" inputmode="numeric"> <br>
+            naration :<br><input name="naration" > <br>
+            user :<br><input name="user" > <br>
+            <input type="submit" value="submit" class="btn btn-primary m-4">
+          </p>
+        </div>
+      </form>
 
     </div>
 
     <hr>
 
-<small>
+    <small>
 
-    <table class="table-bordered table table-responsive table-striped">
-      <thead class="m-0 p-0 text-center">
-        <tr style="position: sticky;top: -1px;" class="bg-light border-bottom">
-          <th>#</th>
-          <th>#Ref</th>
-          <th>P & B</th>
-          <th>Date</th>
-          <th>Bags</th>
-          <th>oil</th>
-          <th>plant</th>
-          <th><small> edit</small>  </th>
-        </tr>
-      </thead>
-      <tbody class="text-center">
-        <tr v-for="d in data" >
-          <td >{{d.sno}}</td>
-          <td>{{d.reffno}}</td>
-          <td>{{d.party[0] + " - " +d.broker[0]}}</td>
-          <td>{{month(d.sampleDate)}}</td>
-          <td>{{d.bags}}</td>
-          <td>{{d.branReport}}</td>
-          <td>{{d.plantBranReport}}</td>
-          <td  @click="log(d._id)" class="text-center"><small><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-          </svg></small> </td>
-        </tr>
-      </tbody>
-    </table>
+      <table v-show="!showForm" class="table-bordered table table-responsive table-striped">
+        <thead class="m-0 p-0 text-center ">
+          <tr style="position: sticky;top: -1px;" class="bg-light shadow-sm border-bottom">
+            <th>#</th>
+            <th>Date</th>
+            <th>#Ref</th>
+            <th>P & B</th>
+            <th>Bags</th>
+            <th>oil</th>
+            <th>plant</th>
+            <th><small> edit</small> </th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr v-for="d in data">
+            <td>{{d.sno}}</td>
+            <td>{{month(d.sampleDate)}}</td>
+            <td>{{d.reffno}}</td>
+            <td>{{d.party[0] + " - " +d.broker[0]}}</td>
+            <td>{{d.bags}}</td>
+            <td>{{d.branReport}}</td>
+            <td>{{d.plantBranReport}}</td>
+            <td @click="redirect('/branreport/obj_id/'+d._id)" class="text-center"><small><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg></small> </td>
+          </tr>
+        </tbody>
+      </table>
 
-  </small>
+    </small>
 
 
-
-
+    <div class="vh-100"></div>
 
 
   </div>
