@@ -63,7 +63,7 @@
   <div id="app" class="d-none">
 
     <!-- --------------------------------------------nav bar--------------------------------------------- -->
-    <div class="navbar navbar-dark bg-dark absalute text-light">
+    <div class="navbar navbar-dark bg-dark text-light">
       <div class="container">
         <a href="#" class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
           Bran Register</a>
@@ -281,280 +281,80 @@
 
     <div class="container my-3">
       <h1 class="d-inline">Dash</h1>
-      <button class="btn btn-outline-primary float-end" @click="">+ Add new</button>
-
+      <button class="btn btn-outline-primary float-end " @click="">+ Add new</button>
     </div>
     <hr>
 
-    <div class="container my-3 d-flex gap-2 justify-content-around align-items-center">
-      <div class="col-3">
-        <label>Filter by</label>
-        <select name="" id="" class="form-select">
-          <option value="" disabled selected>Filter By</option>
-          <option value="date">date</option>
-        </select>
-      </div>
-      <div class="col-3">
-        <label>Sort by</label>
-        <select name="" id="" class="form-select ">
-          <option value="date">date</option>
-        </select>
-      </div>
-      <div class="col-3">
-        <label>Search</label>
-        <input type="search" class="form-control ">
-      </div>
-      <div class="">
-        <button>clear all</button>
-      </div>
+    <div>
+      <details class="container m-0 py-1 bg-light">
+        <summary dir="rtl">
+          sort/ filter/search
+        </summary>
+        <p>
+          <div class=" d-flex gap-2 justify-content-around align-items-center ">
+            <div class="col-3 input-group-sm">
+              <label class="d-none">Filter by</label>
+              <select name="" id="" class="form-select">
+                <option value="" disabled selected>Filter By</option>
+                <option value="date">date</option>
+              </select>
+            </div>
+            <div class="col-3 input-group-sm">
+              <label class="d-none">Sort by</label>
+              <select name="" id="" class="form-select ">
+                <option value="" disabled selected>Sort By</option>
+                <option value="date">date</option>
+              </select>
+            </div>
+            <div class="col-3 input-group-sm">
+              <label class="d-none">Search</label>
+              <input type="search" class="form-control" placeholder="Search">
+            </div>
+            <div class="">
+              <button class="small rounded-2  ">clear all</button>
+            </div>
+          </div>
+
+        </p>
+      </details>
+
+
     </div>
+
     <hr>
 
+<small>
+
+    <table class="table-bordered table table-responsive table-striped">
+      <thead class="m-0 p-0">
+        <tr style="position: sticky;top: -1px;" class="bg-light">
+          <th>#</th>
+          <th>Reff No</th>
+          <th>P & B</th>
+          <th>Date</th>
+          <td>Bags</td>
+          <th>oil</th>
+          <th>plant</th>
+          <th>edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="d in data">
+          <td>{{d.sno}}</td>
+          <td>{{d.reffno}}</td>
+          <td>{{d.party[0] + " - " +d.broker[0]}}</td>
+          <td>{{month(d.sampleDate)}}</td>
+          <td>{{d.bags}}</td>
+          <td>{{d.branReport}}</td>
+          <td>{{d.plantBranReport}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </small>
 
 
-
-
-
-    <div style="overflow-x:auto;">
-      <table class="table h-50 small">
-        <thead>
-          <tr class="align-baseline">
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Reff. no</th>
-            <th scope="col">Party</th>
-            <th scope="col">Broker</th>
-            <th scope="col">Bags</th>
-            <th scope="col">Oil %</th>
-            <th scope="col">Plant</th>
-            <th scope="col">edit</th>
-          </tr>
-        </thead>
-        <tbody style="overflow-y:auto; ">
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-          <tr style="position: relative;">
-            <th scope="row">1</th>
-            <td>11/12</td>
-            <td>23</td>
-            <td>kamla solvent <button class="edit btn btn-warning bg-opacity-50 d-none">edit</button></td>
-            <td>vimal sharma</td>
-            <td>234k</td>
-            <td>18.4%</td>
-            <td>17.4%</td>
-            <td><button>edit</button></td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
 
 
 

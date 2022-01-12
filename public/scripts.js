@@ -1,5 +1,10 @@
 
-let data =  JSON.parse(document.querySelector('#ejsdata').value)
+let data =  JSON.parse(document.querySelector('#ejsdata').value).reverse()
+
+data.forEach((d,i) => {
+  d.sno = i+1
+});
+
 console.log(data)
 document.querySelector('#ejsdata').remove() 
 
@@ -25,7 +30,11 @@ var app = Vue.createApp({
     }
   },
   methods: {
-
+    month: function(date){
+      let d = new Date(date)
+      let month = d.getMonth()+1
+      return d.getDate()+"/"+ month  
+    }
   },mounted:()=>{
     document.querySelector('#app').classList.remove('d-none')
   },
@@ -34,5 +43,4 @@ var app = Vue.createApp({
 })
 
 app.mount("#app")
-
 

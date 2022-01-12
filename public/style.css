@@ -1,22 +1,13 @@
-td {
-  padding: 3px;
-}
-
-#clock {
-  font-size: large;
-}  
-tr{
-
-}
-
 .delbtn{
   position:relative;bottom: 111px;left: 200px;
 }
 .h-0{
   height: 0px;
 }
-nav{
-  position: fixed;
+.navbar{
+  position: relative;
+  top: 0px;
+  z-index: 1;
 }
 .nav-dropdown{
   display: none;
@@ -38,4 +29,7 @@ nav{
 .edit{
   position: absolute;
   bottom:70px;
+}
+hr{
+  margin:0%;padding:0%
 }
