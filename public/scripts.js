@@ -1,4 +1,4 @@
-let dataJsonFromEjsServer = JSON.parse(document.querySelector('#ejsdata').value)
+let dataJsonFromEjsServer = JSON.parse(document.querySelector('#ejsdata').value).reverse()
 dataJsonFromEjsServer.forEach((d, i) => {
   d.sno = i + 1
 });
