@@ -3,40 +3,62 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+
+
 
   <!-- -------------------------------------------app manisfest------------------------------------------ -->
-  <link rel="manifest" href="/manifest/branReport_manifest.json">
+  <link rel="manifest"
+        href="/manifest/branReport_manifest.json">
 
 
   <!-- ------------------------------- bootstrap--------------------------------------------------- -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+          crossorigin="anonymous">
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+          integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+          crossorigin="anonymous">
   </script>
   <!-- --------------------------------------------fonts ----------------------------------------------------- -->
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,800&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
   <!-- google fonts link  -->
-  <link href='https://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet'>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Permanent Marker'
+        rel='stylesheet'>
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap"
+        rel="stylesheet">
 
   <!-- ---------------------------------------------vue-------------------------------------------------------- -->
-  <script defer src="https://unpkg.com/vue@next"></script>
+  <script defer
+          src="https://unpkg.com/vue@next"></script>
 
   <!-- ---------------------------------------------------custom styles----------------------------------- -->
-  <link rel="stylesheet" href="/style.css">
-  <script defer src="/scripts.js"></script>
+  <link rel="stylesheet"
+        href="/style.css">
+  <script defer
+          src="/scripts.js"></script>
 
 
   <title>Bran report</title>
@@ -44,351 +66,185 @@
 
 <body>
 
-  <% logs = logs.reverse() %>
-  <% let year = (logs[0].sampleDate?.getYear()+1900) %>
-  <% let month = ((logs[0].sampleDate?.getMonth()+1>=10)?logs[0].sampleDate?.getMonth()+1:'0'+(logs[0].sampleDate?.getMonth()+1)) %>
-  <% let day = (logs[0].sampleDate?.getDate()>10?logs[0].sampleDate?.getDate():'0'+logs[0].sampleDate?.getDate()) %>
-  <% let date = `${year}-${month}-${day}` %>
+  <!-- passing the data from the ejs to input to vue app  -->
+  <input id="ejsdata"
+         type="text"
+         class="d-none"
+         value="<%= JSON.stringify(logs) %>">
 
-  <input id="ejsdata" type="text" class="d-none" value="<%= JSON.stringify(logs) %>">
+         
+  <div id="app"
+       class="d-none">
 
-
-
-
-
-
+    <nav-bar></nav-bar>
 
 
+    <v-crud>
 
-  <div id="app" class="d-none">
-
-    <!-- --------------------------------------------nav bar--------------------------------------------- -->
-    <div class="navbar navbar-dark bg-dark text-light">
-      <div class="container">
-        <a href="#" class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
-          Bran Register</a>
-        <div>
-          <i class="bi bi-caret-down"></i>
+      <!-- CRUD app header -->
+      <div class="container my-3">
+        <h1 class="d-inline">CRUD</h1>
+        <div class="btn btn-outline-primary float-end "
+             @click="showForm = !showForm"
+             v-if="!showForm && !editForm">
+          <span>+ Add new</span>
         </div>
-        <div class="float-end position-relative">
-          <div class="btn text-light " :class="[navshow? 'btn-outline-secondary':'' ]" @click="navshow =!navshow">
-            <svg v-show="!navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
-            </svg><svg v-show="navshow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z" />
-            </svg>
-          </div>
-          <div class="container">
-            <div class=" d-flex flex-column float-end  justify-content-around  small card nav-dropdown " v-if="navshow">
-
-              <div v-for="(link,i) in dashLinks" class=" ">
-                <a class="text-decoration-none " :href="link.link">
-                  <div class="py-2 link-dark px-4 bg-light">
-                    {{link.label}}
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+        <div class="btn btn-outline-primary float-end "
+             @click="showForm=false;editForm=false"
+             v-else>
+          <span v-show="true">cancel</span>
         </div>
       </div>
-    </div>
 
-    <!-- previous app -->
-    <div class="d-none">
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-            role="tab" aria-controls="home" aria-selected="true">
-            Form
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-            role="tab" aria-controls="profile" aria-selected="false">
-            Tabel
-          </button>
-        </li>
+      <hr>
 
-        <!-- li not dispalyed saved for later sintax ref -->
-        <li class="nav-item d-none" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-            role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-        </li>
-      </ul>
+      <!-- edit and delete form -->
+      <div class="editDeleteByIdForm"
+           v-show="editForm"
+           :editbyid="editbyid">
+        <form :action="'/branreport/obj_id/'+editbyid"
+              method="post"
+              autocomplete="off"
+              class="m-0 p-0 container card">
 
-
-      <div class="tab-content" id="myTabContent">
-        <!-- ---------------------------------------------form seciton-------------------------------- -->
-        <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-          <details class="card my-3 p-3 ">
-            <summary style="list-style-type: none;">
-
-              <u><b> Last Entry:: </b></u>
-            </summary>
-            <p>
-
-              <div class="d-flex flex-row">
-                <div class="col p-0 m-0">Reff no: <%= logs[0].refno %> </div>
-                <div class="col p-0 m-0">Date: <%= date %> </div>
-              </div>
-              <div class="d-flex flex-row">
-                <div class="col p-0 m-0">Party: <%= logs[0].party %> </div>
-                <div class="col p-0 m-0">Broker: <%= logs[0].broker %> </div>
-              </div>
-              <hr class="m-0 mb-1">
-              <div class="d-flex flex-row">
-                <div class="col p-0 m-0">Oil %: <%= logs[0].branReport %> </div>
-                <div class="col p-0 m-0">Bags: <%= logs[0].bags %> </div>
-              </div>
-              <div class="col-6"></div>
-              <div class="d-flex flex-row">
-              </div>
+          <div class="bg-light p-4"
+               id="details">
+            <p class="">
+              <h4>Edit form</h4>
+              refno :<br><input name="refno"
+                     type="number"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.refno)[0]"> <br>
+              party* :<br><input name="party"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.party)[0]"
+                     required> <br>
+              broker* :<br><input name="broker"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.broker)[0]"
+                     required> <br>
+              <!-- logTime :<input name="logTime" id=""> <br> -->
+              sampleDate* :<br><input type="date"
+                     name="sampleDate"
+                     :value="dateForInputFormat(data.filter(d=>d._id===editbyid).map(d=>d.sampleDate)[0])"
+                     required><br>
+              bags* :<br><input name="bags"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.bags)[0]"
+                     inputmode="numeric"> <br>
+              branReport :<br><input name="branReport"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.branReport)[0]"
+                     inputmode="numeric"><br>
+              plantBranReport :<br><input name="plantBranReport"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.plantBranReport)[0]"
+                     inputmode="numeric"> <br>
+              naration :<br><input name="naration"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.naration)[0]"> <br>
+              user :<br><input name="user"
+                     :value="data.filter(d=>d._id===editbyid).map(d=>d.user)[0]"> <br>
+              <input type="submit"
+                     value="submit"
+                     class="btn btn-primary m-4">
             </p>
-          </details>
-
-          <form action="/branreport" method="post" autocomplete="off" class=" m-5">
-            <small>
-
-              <div class="mb-2">
-                <label class="form-label" for="refnoinput"> Reff no :</label>
-                <input type="number" class="form-control" name="refno" id="refnoinput" placeholder="number">
-                <small class="text-muted">Truck number / gp no / rstno etc...</small>
-              </div>
-
-              <div class="mb-2">
-                <label class="form-labels" for="partyinput"> Party</label>
-                <input type="text" class="form-control" name="party" id="partyinput" required>
-                <small class="text-muted ">*required</small>
-
-              </div>
-
-              <div class="mb-2">
-                <label class="form-labels" for="refno"> Broker </label>
-                <input type="text" class="form-control" name="broker" id="brokerinput" required>
-                <small class="text-muted">*required</small>
-              </div>
-
-              <!-- logTime :<br><input   name="logTime" id=""> <br> -->
-              <div class="mb-2">
-                <label class="form-labels" for="refno"> Sample Date </label>
-                <input type="date" class="form-control" name="sampleDate" required id="sampleDateinput">
-                <small class="text-muted">*required</small>
-              </div>
-
-              <!-- <div class="mb-2">
-            <label for="" class="form-label">bags</label>
-            <input type="number" class="form-control" name="bags" required id="bagsinput">
-            <small class="text-muted">*required</small>
-          </div> -->
-
-
-              <!-- bags* :<br><input name="bags" id=""> <br> -->
-              <div class="mb-2">
-                <label for="bagsinput" class="form-label">bags</label>
-                <input type="number" class="form-control" name="bags" required id="bagsinput">
-                <small class="text-muted">*required</small>
-
-              </div>
-
-              <div class="mb-2">
-                <label for="branReportinput" class="form-label">Bran Report</label>
-                <input type="number" class="form-control" name="branReport" id="branReportinput">
-              </div>
-              <div class="mb-2">
-                <label for="plantBranReportinput" class="form-label">Plant Bran Report</label>
-                <input type="number" class="form-control" name="plantBranReport" id="plantBranReportinput">
-              </div>
-              <div class="mb-2">
-                <label for="narationinput" class="form-label">narration</label>
-                <input type="text" class="form-control" name="naration" id="narationinput">
-              </div>
-              <div class="mb-2">
-                <label for="user" class="form-label">user</label>
-                <input type="text" class="form-control" name="user" id="userinput">
-              </div>
-            </small>
-
-
-            <!-- 
-          branReport :<br><input name="branReport" id="">
-          <br>
-          plantBranReport :<br><input name="plantBranReport" id=""> <br>
-          naration :<br><input name="naration" id=""> <br>
-          user :<br><input name="user" id=""> <br> -->
-
-            <input type="submit" value="submit" class="btn btn-primary m-4">
-          </form>
-        </div>
-
-        <!-- ------------------------------ table seciton --------------------------------------------- -->
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="container-fluid">
-            <table class="table-bordered mt-5 m-auto">
-              <thead class="bg-secondary">
-
-                <tr style="font-size: 12px; font-weight: 800;">
-                  <td>Date</td>
-                  <td>RefNo</td>
-                  <td>Party</td>
-                  <td>Broker</td>
-                  <td>Bags</td>
-                  <td>Oil %</td>
-                  <td>Plant </td>
-                  <td>Edit</td>
-                </tr>
-              </thead>
-              <tbody>
-
-                <% logs?.forEach(log => { %>
-
-                <tr>
-                  <td><%= log.sampleDate?.getDate() || 'nill' %>/<%= log.sampleDate?.getMonth()+1 %></td>
-                  <td><%= (log.refno || 'nill') %></td>
-                  <td><%= log.party %></td>
-                  <td><%= log.broker %></td>
-                  <td><%= log.bags %></td>
-                  <td><%= log.branReport || ' -' %></td>
-                  <td><%= (log.plantBranReport ||' - ') %></td>
-                  <td><a href="/branreport/obj_id/<%= log._id %> " class="text-decoration-none"> ✏️</a></td>
-                </tr>
-                <% }) %>
-              </tbody>
-              <tfoot>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tfoot>
-            </table>
           </div>
-        </div>
+        </form>
+
+        <form :action="'/branreport/obj_id/del/'+editbyid"
+              method="post"
+              class="h-0">
+          <input type="submit"
+                 value="delete"
+                 class="btn btn-dark text-danger shadow delbtn">
+        </form>
       </div>
-    </div>
+
+      <!-- input form -->
+      <form action="/branreport"
+            method="post"
+            v-show="showForm"
+            autocomplete="off"
+            class="m-0 p-0 container card">
 
 
-
-
-
-    <div class="container my-3">
-      <h1 class="d-inline">Dash</h1>
-      <div class="btn btn-outline-primary float-end " @click="showForm = !showForm" >
-        <span v-show="!showForm">+ Add new</span>
-        <span v-show="showForm">cancel</span>
-      </div>
-    </div>
-    <hr>
-
-    <div class="">
-
-      <details class="container m-0 py-1 bg-light d-none">
-        <summary dir="rtl">
-          sort/ filter/search
-        </summary>
-        <p>
-          <div class=" d-flex gap-2 justify-content-around align-items-end ">
-            <div class="col-6 input-group-sm">
-              <label class="">Month</label>
-              <!-- <select name="" id="" class="form-select d-none">
-                <option value="" disabled selected>Filter By</option>
-                <option value="date">date</option>
-              </select> -->
-              <input type="month" id="monthSelector" class="form-control">
-
-            </div>
-            <div class="col-3 d-none input-group-sm">
-              <label class="d-none">Sort by</label>
-              <select name="" id="" class="form-select ">
-                <option value="" disabled selected>Sort By</option>
-                <option value="date">date</option>
-              </select>
-            </div>
-            <div class="col-3 input-group-sm">
-              <label class="d-none">Search</label>
-              <input type="search" class="form-control" placeholder="Search">
-            </div>
-            <div class="">
-              <button class="small rounded-2  ">clear all</button>
-            </div>
-          </div>
-
-        </p>
-      </details>
-
-      <form action="/branreport" method="post" v-show="showForm" autocomplete="off" class="m-0 p-0 container card">
-        <div class="bg-light p-2 border  ">
-          <p class="p-4 pt-1 ">
-            refno :<br><input name="refno"> <br>
-            party* :<br><input name="party" required> <br>
-            broker* :<br><input name="broker" required> <br>
+        <div class="bg-light p-4 ">
+          <p>
+            <h4>Add Form</h4>
+            refno :<br><input name="refno"
+                   type="number"> <br>
+            party* :<br><input name="party"
+                   required> <br>
+            broker* :<br><input name="broker"
+                   required> <br>
             <!-- logTime :<input name="logTime" id=""> <br> -->
-            sampleDate* :<br><input type="date" name="sampleDate" required><br>
-            bags* :<br><input name="bags" inputmode="numeric" required> <br>
-            branReport :<br><input name="branReport" inputmode="numeric"><br>
-            plantBranReport :<br><input name="plantBranReport" inputmode="numeric"> <br>
-            naration :<br><input name="naration" > <br>
-            user :<br><input name="user" > <br>
-            <input type="submit" value="submit" class="btn btn-primary m-4">
+            sampleDate* :<br><input type="date"
+                   name="sampleDate"
+                   required><br>
+            bags* :<br><input name="bags"
+                   inputmode="numeric"
+                   required> <br>
+            branReport :<br><input name="branReport"
+                   inputmode="numeric"><br>
+            plantBranReport :<br><input name="plantBranReport"
+                   inputmode="numeric"> <br>
+            naration :<br><input name="naration"> <br>
+            user :<br><input name="user"> <br>
+            <input type="submit"
+                   value="submit"
+                   class="btn btn-primary m-4">
           </p>
         </div>
       </form>
 
-    </div>
+      <!-- table component -->
+      <table v-show="!showForm && !editForm"
+             class="table-bordered table table-responsive table-striped">
+        <small>
+          <thead class="m-0 p-0 text-center ">
+            <tr style="position: sticky;top: -1px;"
+                class="bg-light shadow-sm border-bottom">
+              <th>#</th>
+              <th>Date</th>
+              <th>#Ref</th>
+              <th>P & B</th>
+              <th>Bags</th>
+              <th>oil</th>
+              <th>plant</th>
+              <th><small> edit</small> </th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr v-for="d in data">
+              <td>{{d.sno}}</td>
+              <td>{{shortDateFormat(d.sampleDate)}}</td>
+              <td>{{d.refno}}</td>
+              <td>{{d.party[0] + " - " +d.broker[0]}}</td>
+              <td>{{d.bags}}</td>
+              <td>{{d.branReport}}</td>
+              <td>{{d.plantBranReport}}</td>
+              <td @click="editbyid = d._id;editForm = true"
+                  class="text-center">
+                <small><svg xmlns="http://www.w3.org/2000/svg"
+                       width="16"
+                       height="16"
+                       fill="currentColor"
+                       class="bi bi-pencil-square"
+                       viewBox="0 0 16 16">
+                    <path
+                          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                  </svg></small>
+              </td>
+            </tr>
+          </tbody>
+        </small>
 
-    <hr>
-
-    <small>
-
-      <table v-show="!showForm" class="table-bordered table table-responsive table-striped">
-        <thead class="m-0 p-0 text-center ">
-          <tr style="position: sticky;top: -1px;" class="bg-light shadow-sm border-bottom">
-            <th>#</th>
-            <th>Date</th>
-            <th>#Ref</th>
-            <th>P & B</th>
-            <th>Bags</th>
-            <th>oil</th>
-            <th>plant</th>
-            <th><small> edit</small> </th>
-          </tr>
-        </thead>
-        <tbody class="text-center">
-          <tr v-for="d in data">
-            <td>{{d.sno}}</td>
-            <td>{{month(d.sampleDate)}}</td>
-            <td>{{d.reffno}}</td>
-            <td>{{d.party[0] + " - " +d.broker[0]}}</td>
-            <td>{{d.bags}}</td>
-            <td>{{d.branReport}}</td>
-            <td>{{d.plantBranReport}}</td>
-            <td @click="redirect('/branreport/obj_id/'+d._id)" class="text-center"><small><svg
-                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                </svg></small> </td>
-          </tr>
-        </tbody>
       </table>
 
-    </small>
+    </v-crud>
 
-
-    <div class="vh-100"></div>
 
 
   </div>
+  <div class="vh-100"
+       id="app2"></div>
+
 </body>
 
 </html>

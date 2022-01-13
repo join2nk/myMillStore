@@ -1,13 +1,14 @@
 require("dotenv").config()
-// const cookieParser = require("cookie-parser")
+const _ = require("lodash");
+//const path = require('path')
 // const cors = require('cors')
 const express = require("express")
 const mongoose = require("mongoose")
-const path = require('path')
-const _ = require("lodash");
+// const cookieParser = require("cookie-parser")
+
 
 const app = express()
-
+//so that i can use low dash in ejs views 
 app.locals._ = _;
 
 mongoose.connect(process.env.MONGODB, (e) => {if(e){console.log(e + '\n-----Error')}else{console.log("database connected nk")}})
@@ -30,6 +31,4 @@ app.use('/',root)
 
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
 
-app.use((req, res) => {
-  res.send("<h2>error 404</h2>")
-})
+app.use((req, res) => {res.send("<h2>error 404</h2>")})
