@@ -72,7 +72,7 @@
          class="d-none"
          value="<%= JSON.stringify(logs) %>">
 
-         
+
   <div id="app"
        class="d-none">
 
@@ -192,9 +192,10 @@
       </form>
 
       <!-- table component -->
+      <small>
+
       <table v-show="!showForm && !editForm"
-             class="table-bordered table table-responsive table-striped">
-        <small>
+             class="table-bordered table table-responsive table-striped small">
           <thead class="m-0 p-0 text-center ">
             <tr style="position: sticky;top: -1px;"
                 class="bg-light shadow-sm border-bottom">
@@ -233,9 +234,9 @@
               </td>
             </tr>
           </tbody>
-        </small>
 
       </table>
+    </small>
 
     </v-crud>
 
