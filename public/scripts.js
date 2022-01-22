@@ -47,14 +47,14 @@ const navbar = {
         link: "/",
         label: "Home"
       }, {
-        link: "milling/milling.html",
-        label: "Milling Register"
+        link: "/milling",
+        label: "Milling Report"
       }, {
-        link: "test/test.html",
-        label: "Bran Register"
+        link: "/branreport",
+        label: "Bran Report"
       }, {
-        link: "milling_2/index.html",
-        label: "Milling 2"
+        link: "/login/logout",
+        label: "logout"
       }],
     }
   },

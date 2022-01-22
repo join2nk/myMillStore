@@ -1,10 +1,11 @@
 require("dotenv").config()
 const _ = require("lodash");
+const http = require('http')
 //const path = require('path')
 // const cors = require('cors')
 const express = require("express")
 const mongoose = require("mongoose")
-// const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser")
 
 
 const app = express()
@@ -17,18 +18,18 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname+'/public'));
 // app.use(cors({  origin: '*'}))
-// app.use(cookieParser())
+app.use(cookieParser())
 app.set('view engine', 'ejs');
 
 
 
 //home route
 const root = require('./server/routers/index')
-app.use('/',root)
-
+app.use('/',root) 
 
 
 
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
+
 
 app.use((req, res) => {res.send("<h2>error 404</h2>")})
