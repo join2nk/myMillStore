@@ -4,7 +4,7 @@ const BranReport = require("../models/branReportModel.js")
 
 const getHome = async (req, res) => {
   let logs = await BranReport.find({})  
-  res.render("bran/branreport",{logs})
+  res.render("bran/branreport",{logs,title:'Bran Register',titlehref:'/branreport'})
 }
 const postBranReport = async (req, res) => {
   //let logs = await GateLogs.find({})  
@@ -22,7 +22,6 @@ const postBranReport = async (req, res) => {
 
   
 }
-
 const edit = async (req, res) => {
   let _id = req.params.id
   let logs = await BranReport.find({_id})  
@@ -36,7 +35,6 @@ const editPost = async (req, res) => {
   res.redirect('/branreport');
 
 }
-
 const delPost = async (req, res) => {
   //let [refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user] = [req.body.refno,req.body.party,req.body.broker,req.body.logTime,req.body.sampleDate,req.body.bags,req.body.branReport,req.body.plantBranReport,req.body.naration,req.body.user]
   

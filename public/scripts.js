@@ -61,8 +61,8 @@ const navbar = {
   template: `
   <div class="navbar navbar-dark bg-dark text-light">
   <div class="container">
-    <a href="#" class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
-      Bran Register</a>
+    <a class="navbar-brand shadow" style="font-family: 'Smooch', cursive; font-size:x-large;">
+      <slot></slot></a>
     <div>
       <i class="bi bi-caret-down"></i>
     </div>

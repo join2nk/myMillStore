@@ -19,7 +19,7 @@ router.use('/login',loginRouter)
 
 //controllers
 const controller = require('../controllers/rootController')
-router.get('/', controller.getRoot)
+router.get('/',checklogin, controller.getRoot)
 
 
 module.exports = router

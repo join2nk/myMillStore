@@ -3,7 +3,8 @@
 // arwamill_index details creat_get creat_post !del 
 
 const getRoot = (req, res) => { 
-  res.redirect("/branreport")
+  // res.redirect("/branreport")
+  res.render("index",{title:'Dashboard',titlehref:'/'})
 }
 
 
