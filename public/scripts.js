@@ -38,7 +38,7 @@ const vueApp = {
   },
   created(){}
 }
-
+//components
 const navbar = {
   data() {
     return {
@@ -95,13 +95,15 @@ const navbar = {
 </div>
 `
 }
-
+const vcrud = {
+  template:'<slot></slot>'
+}
 
 
 const app = Vue.createApp(vueApp)
 
 app.component('nav-bar', navbar)
-app.component('v-crud', {template:'<slot></slot>'})
+app.component('v-crud', vcrud )
 
 
 app.mount("#app")

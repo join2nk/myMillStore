@@ -2,24 +2,29 @@ const express = require("express")
 const router = express.Router()
 
 
-const checklogin = (req,res,next)=>{
-  if(req.cookies.name!='nk')return res.redirect('/login')
-  next()
-}
+const loginCheck = require('../controllers/loginController').authenticateUser
+// (req,res,next)=>{
+//   let users =['nk','ramesh']
+//   if(req.cookies.name in users)return res.redirect('/login')
+
+//   next()
+// }
 
 
 //routes
-const branReoprtRouter = require('./bran/branReportRouter')
 const loginRouter = require('./login/loginRouter')
 
-router.use('/branreport',checklogin, branReoprtRouter)
 router.use('/login',loginRouter)
 
+
+const branReoprtRouter = require('./bran/branReportRouter')
+
+router.use('/branreport',loginCheck, branReoprtRouter)
 
 
 //controllers
 const controller = require('../controllers/rootController')
-router.get('/',checklogin, controller.getRoot)
+router.get('/',loginCheck, controller.getRoot)
 
 
 module.exports = router

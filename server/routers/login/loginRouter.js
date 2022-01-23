@@ -6,7 +6,6 @@ const router = express.Router();
 router.get('/',loginController.getlogin)
 router.post('/',loginController.loginpost)
 router.get('/logout/',loginController.logout)
-router.get('/logout/:username',loginController.logout)
 
 // router.get('/obj_id/:id',loginController.edit)//route not used
 

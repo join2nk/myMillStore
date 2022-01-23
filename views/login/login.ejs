@@ -1,0 +1,33 @@
+<%- include('../partials/header') -%>
+
+
+
+<!-- passing the data from the ejs to input to vue app  -->
+<input id="ejsdata" type="text" class="d-none" value="[]">
+
+
+<div id="app" class="d-none">
+
+  <nav-bar>
+    <a href="<%= titlehref?titlehref:'#' %> " class="navbar-brand">
+      <%= title?title:"Deafult Title" %>
+    </a>
+  </nav-bar>
+
+
+  <div class="p-4 card bg-light ">
+    <h1>Log In</h1>
+    <form action="/login" method="post" autocomplete="off">
+    Username : nk <br> 
+    <input type='text' name="userName"><br>
+    Password : 123<br> 
+    <input type='password' name="password"><br>
+    <input type='submit' value="submit">
+    </form>
+  </div>
+
+</div>
+
+
+
+<%- include('../partials/footer') -%>

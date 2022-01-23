@@ -9,16 +9,21 @@
 <div id="app" class="d-none">
 
   <nav-bar>
-    <a href="<%= titlehref %> " class="navbar-brand">
-      <%= title?title:"" %>
+    <a href="<%= titlehref?titlehref:'#' %> " class="navbar-brand">
+      <%= title?title:"Deafult Title" %>
     </a>
   </nav-bar>
 
 
-  <div class="p-4 card bg-light ">
-    this is dashboard
-  </div>
+  <section class="container mt-5 position-relative m-5 flex flex-lg-row" >
+
+    <a href="/branreport" class="text-decoration-none text-light m-2 p-4 bg-secondary rounded ">Bran Report</a>
+    <a href="/branreport" class="text-decoration-none text-light m-2 p-4 bg-secondary rounded ">Bran Report</a>
+
+  </section>
 
 </div>
+
+
 
 <%- include('partials/footer') -%>
