@@ -10,7 +10,6 @@ users = [{
   userName: "nk",
   password: "123",
   sessionid: "12347",
-  role : role[0]
 },{
   userName: "ramesh",
   password: "123",
@@ -48,21 +47,14 @@ const loginpost = (req, res) => {
 
 
 const authenticateUser = (req, res, next) => {
-  //  get res cookie
-  // 
+ 
   console.log('authenticating.....')
-  
   var sessionid = req.cookies.sessionid;
-  var listofsessionids = []
-  var userlogin = {}
-  users.forEach(user => {
-    if (sessionid === user.sessionid){
-      req.user = user.userName
-      next()
-    }
-  });
-  res.redirect('/login')
-
+  let userfound = false
+  
+  users.forEach(user => {if(sessionid === user.sessionid)userfound = true})
+  console.log(userfound);
+  if (!userfound){res.redirect('/login')}else{next()}
 }
 
 const logout = (req, res) => {
