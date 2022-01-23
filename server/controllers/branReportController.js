@@ -4,7 +4,7 @@ const BranReport = require("../models/branReportModel.js")
 
 const getHome = async (req, res) => {
   let logs = await BranReport.find({})  
-  res.render("bran/branreport",{logs,title:'Bran Register',titlehref:'/branreport'})
+  res.render("bran/branreport",{logs,title:'Bran Register',titlehref:'/branreport',user:req.user.userName})
 }
 const postBranReport = async (req, res) => {
   //let logs = await GateLogs.find({})  

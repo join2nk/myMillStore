@@ -4,7 +4,7 @@
 
 const getRoot = (req, res) => { 
   // res.redirect("/branreport")
-  res.render("index",{title:'Dashboard',titlehref:'/'})
+  res.render("index",{title:'Dashboard',titlehref:'/',user:req.user.userName})
 }
 
 

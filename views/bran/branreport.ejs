@@ -57,6 +57,7 @@
               <nav-bar>
                      <a href="<%= titlehref %> " class="navbar-brand">
                             <%= title?title:"" %>
+                            <div class="badge font-monospace fw-lighter" style="font-size: 12px;">(<%= user %>)</div>
                      </a>
               </nav-bar>
 
@@ -111,7 +112,7 @@
                                                  naration :<br><input name="naration"
                                                         :value="data.filter(d=>d._id===editbyid).map(d=>d.naration)[0]">
                                                  <br>
-                                                 user :<br><input name="user"
+                                                 user :<br><input name="user" class="disabled btn"
                                                         :value="data.filter(d=>d._id===editbyid).map(d=>d.user)[0]">
                                                  <br>
                                                  <input type="submit" value="submit" class="btn btn-primary m-4">
@@ -141,7 +142,7 @@
                                           branReport :<br><input name="branReport" inputmode="numeric"><br>
                                           plantBranReport :<br><input name="plantBranReport" inputmode="numeric"> <br>
                                           naration :<br><input name="naration"> <br>
-                                          user :<br><input name="user"> <br>
+                                          user :<input name="user" value="<%= user %>" class="disabled btn"> <br>
                                           <input type="submit" value="submit" class="btn btn-primary m-4">
                                    </p>
                             </div>

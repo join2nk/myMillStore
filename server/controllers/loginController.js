@@ -52,7 +52,7 @@ const authenticateUser = (req, res, next) => {
   var sessionid = req.cookies.sessionid;
   let userfound = false
   
-  users.forEach(user => {if(sessionid === user.sessionid)userfound = true})
+  users.forEach(user => {if(sessionid === user.sessionid){userfound = true;req.user = user}})
   console.log(userfound);
   if (!userfound){res.redirect('/login')}else{next()}
 }
