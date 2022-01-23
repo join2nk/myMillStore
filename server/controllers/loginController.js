@@ -60,8 +60,8 @@ const authenticateUser = (req, res, next) => {
       req.user = user.userName
       next()
     }
-    } 
-  );
+  });
+  res.redirect('/login')
 
 }
 
