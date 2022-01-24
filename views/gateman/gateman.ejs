@@ -13,29 +13,11 @@
 
 
   <div v-if="!inform && !outform ">
-    <div class="container my-3" v-if="'<%= user %>'==='nk' " style="display: flex;
-    justify-content: center;
-    align-items: center;
-    ">
-      <div class="card w-100">
-        <div class="card-header small">Total</div>
-        <div class="card-body small">
-          no of trucks in
-          <ul>
-            <li>17</li>
-          </ul>
-          <a href="/gateman/allin">
-            <button>show more</button>
-          </a>
-        </div>
-
-      </div>
-    </div>
-    <hr>
+   
     <div class="container" style="display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    min-height: 40vh;
     ">
       <div class="card w-50">
         <div class="card-header small">Last In</div>
@@ -52,7 +34,7 @@
     <div class="container" style="display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    min-height: 40vh;
     ">
       <div class="card w-50">
         <div class="card-header small">Last Out</div>
