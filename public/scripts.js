@@ -10,6 +10,8 @@ const vueApp = {
     return {
       showForm: false,
       editForm: false,
+      inform:false,
+      outform:false,
       data: dataJsonFromEjsServer,
       editbyid:"",
       test:"asdf"
@@ -49,6 +51,9 @@ const navbar = {
       }, {
         link: "/milling",
         label: "Milling Report"
+      }, {
+        link: "/gateman",
+        label: "Gate App "
       }, {
         link: "/branreport",
         label: "Bran Report"

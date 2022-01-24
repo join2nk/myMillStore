@@ -36,3 +36,6 @@ hr{
 thead>tr{
   border-bottom: 1px double black ;
 }
+summary{
+  list-style: none;
+}

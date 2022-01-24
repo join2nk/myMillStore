@@ -9,18 +9,22 @@
 <div id="app" class="d-none">
 
   <nav-bar>
-    <a href="<%= titlehref?titlehref:'#' %> " class="navbar-brand">
-      <%= title?title:"Deafult Title" %>
-      <div class="badge font-monospace fw-lighter" style="font-size: 12px;">(<%= user %>)</div>
-
-    </a>
+    <%= title?title:"Deafult Title" %>
+    <div class="badge font-monospace fw-lighter" style="font-size: 12px;font-weight: 200;">(<%= user?user:"" %>)</div>
   </nav-bar>
 
 
-  <div class="container mt-5 position-relative m-5 flex flex-lg-row" >
+  <div class="container my-4" style="min-height: 70vh;">
 
-    <a href="/branreport" class="text-decoration-none text-light m-2 p-4 bg-secondary rounded ">Bran Report</a>
-    <a href="/branreport" class="text-decoration-none text-light m-2 p-4 bg-secondary rounded ">Bran Report</a>
+    <a href="/branreport" class="badge bg-secondary">Bran Register</a>  / 
+    <hr><br>
+    <a href="/milling" >milling logs</a> / 
+    <a href="/milling" >milling lab report</a> / 
+    <hr><br>
+    <a href="/gateman" >gateman</a> / 
+    <a href="/gateman/allin" >allin</a> / 
+    <a href="/gateman/kanta" >kanta</a> / 
+    <a href="/gateman/loadunload" >loadunload</a> / 
 
   </div>
 

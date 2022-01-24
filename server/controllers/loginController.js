@@ -9,12 +9,23 @@ role =['admin','all','gateman','arwaSampling','todaysInOut','arwaMilling','usnaS
 users = [{
   userName: "nk",
   password: "123",
-  sessionid: "12347",
+  sessionid: "12345",
 },{
   userName: "ramesh",
   password: "123",
   sessionid: "12346",
-
+},{
+  userName: "naveen",
+  password: "123",
+  sessionid: "12347",
+},{
+  userName: "gate1",
+  password: "123",
+  sessionid: "12348",
+},{
+  userName: "gate2",
+  password: "123",
+  sessionid: "12349",
 }]
 
 

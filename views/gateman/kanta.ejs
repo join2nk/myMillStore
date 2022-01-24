@@ -1,0 +1,49 @@
+<%- include('../partials/header') -%>
+
+
+
+<!-- passing the data from the ejs to input to vue app  -->
+<input id="ejsdata" type="text" class="d-none" value="[]">
+
+
+<div id="app" class="d-none">
+
+
+  <nav-bar>
+    <%= title?title:"Deafult Title" %>
+    <div class="badge font-monospace fw-lighter" style="font-size: 12px;font-weight: 200;">(<%= user?user:"" %>)</div>
+  </nav-bar>
+
+
+
+  <div class="container my-3">
+    <h1 class="d-inline">Kanta</h1>
+
+
+    <div class="badge d-inline-flex float-end">
+      <input type="search" class="small" name="" id="" placeholder="truckno">
+
+      <div class=" btn btn-sm btn-outline-primary float-end ">
+        <span>all</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="container small pb-3" style="font-size: 12px;min-height: 80vh;">
+    <!-- vfor logs logs will be all trucks inside -->
+    <div open v-for="i in [1]" class="card card-body py-1 mt-1 ">
+      <summary class="decoration-none fw-bold">
+        truck no : {{i}}
+      </summary>
+      <div class="pb-0 mb-0 ms-2 container" style="border-left: 2px solid rgb(15, 72, 105);border-radius: 2px;">
+        all <br>
+        <button>select</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <%- include('../partials/footer') -%>

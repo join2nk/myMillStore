@@ -6,7 +6,7 @@
        <meta http-equiv="X-UA-Compatible" content="IE=edge">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 
+
 
 
        <!-- -------------------------------------------app manisfest------------------------------------------ -->
@@ -49,16 +49,16 @@
 
 <body>
        <!-- passing the data from the ejs to input to vue app  -->
-       <input id="ejsdata" type="text" class="d-none" value="<%= logs?JSON.stringify(logs):[] %>">
 
 
        <div id="app" class="d-none">
 
               <nav-bar>
-                     <a href="<%= titlehref %> " class="navbar-brand">
-                            <%= title?title:"" %>
-                            <div class="badge font-monospace fw-lighter" style="font-size: 12px;">(<%= user %>)</div>
-                     </a>
+                     <input id="ejsdata" type="text" class="d-none" value="<%= logs?JSON.stringify(logs):[] %>">
+                     <%= title?title:"Deafult Title" %>
+                     <div class="badge font-monospace fw-lighter" style="font-size: 12px;font-weight: 200;">
+                            (<%= user?user:"no user" %>)
+                     </div>
               </nav-bar>
 
 

@@ -18,8 +18,10 @@ router.use('/login',loginRouter)
 
 
 const branReoprtRouter = require('./bran/branReportRouter')
+const gatemanRouter = require('./gateman/gatemanRouter')
 
 router.use('/branreport',loginCheck, branReoprtRouter)
+router.use('/gateman',loginCheck, gatemanRouter)
 
 
 //controllers
