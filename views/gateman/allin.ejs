@@ -8,23 +8,25 @@
 
 
   <nav-bar>
+    <input id="ejsdata" type="text" class="d-none" value="<%= logs?JSON.stringify(logs):[] %>">
+
     <%= title?title:"Deafult Title" %>
     <div class="badge font-monospace fw-lighter" style="font-size: 12px;font-weight: 200;">(<%= user?user:"" %>)</div>
   </nav-bar>
 
-
+<!-- allin -->
 
   <div class="container my-3">
     <h1 class="d-inline">all IN</h1>
-    <div class="btn btn-outline-primary float-end ">
-      <span>all</span>
-    </div>
+    <a href="/" class="btn btn-outline-primary float-end">
+      <span>back</span>
+    </a>
   </div>
   <hr>
 
   <div class="container small pb-3" style="font-size: 12px;">
-    <!-- vfor logs logs will be all trucks inside -->
-    <details v-for="i in [1,2,3]" class="card card-body py-1 mt-1 ">
+    <!-- vfor logs logs will be all trucks inside and outed today -->
+    <details v-for="(log,i) in data" class="card card-body py-1 mt-1 ">
       <summary class="decoration-none">
         truck no {{i}}
       </summary>

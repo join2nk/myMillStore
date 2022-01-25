@@ -1,10 +1,31 @@
-const BranReport = require("../models/branReportModel.js")
+const gatelogs = require("../models/gatelogs.js");
 
 // arwamill_index details creat_get creat_post !del 
 
+// var new_user = new gatelogs({
+//   truckNo:'cg04jh4420',
+//   broker: 'Manish',
+//   party:34,
+//   items:[{itemType:'others',hemal:'raju',hemalwork:'truck-to-haudi'},{itemType:'others',hemal:'raju',hemalwork:'truck-to-stack'}]
+// })
+
+// new_user.save(function(err,result){
+//   if (err){
+//       console.log(err);
+//   }
+//   else{
+//       console.log(result)
+//   }
+// })
+
+
 const getHome = async (req, res) => {
   // let logs = await BranReport.find({})  
-  res.render("gateman/gateman",{logs:[],title:'Gateman',user:req.user.userName})
+  let lastin = await gatelogs.findOne({}) ||'no entry'
+  let lastout = await gatelogs.findOne({outData:{$eq:null}})
+  
+  let logs = [{lastin,lastout}]
+  res.render("gateman/gateman",{logs:logs,title:'Gateman',user:req.user.userName})
 }
 const getallin = async (req, res) => {
   // let logs = await BranReport.find({})  
@@ -48,7 +69,6 @@ const editPost = async (req, res) => {
 
 }
 const delPost = async (req, res) => {
-  //let [refno,party,broker,logTime,sampleDate,bags,branReport,plantBranReport,naration,user] = [req.body.refno,req.body.party,req.body.broker,req.body.logTime,req.body.sampleDate,req.body.bags,req.body.branReport,req.body.plantBranReport,req.body.naration,req.body.user]
   
   // let _id = req.params.id
   // await BranReport.deleteOne({_id:{$eq:_id}}) 

@@ -1,12 +1,14 @@
 <%- include('../partials/header') -%>
 
 <!-- passing the data from the ejs to input to vue app  -->
-<input id="ejsdata" type="text" class="d-none" value="[]">
+
 
 
 <div id="app" class="d-none">
 
   <nav-bar>
+    <input id="ejsdata" type="text" class="d-none" value="<%= logs?JSON.stringify(logs):[]  %>">
+
     <%= title?title:"Deafult Title" %>
     <div class="badge font-monospace fw-lighter" style="font-size: 12px;font-weight: 200;">(<%= user?user:"" %>)</div>
   </nav-bar>
@@ -22,15 +24,22 @@
       <div class="card w-50">
         <div class="card-header small">Last In</div>
         <div class="card-body small">
-          detalis of in trucksw
-          <ul>
-            <li>tn-64-1234</li>
-          </ul>
+         
+        
+            <li>
+              {{data[0].lastin.truckNo}}
+            </li>
+            <li>
+              GPno-{{data[0].lastin.gatepassNo}}
+            </li>
+       
         </div>
       </div>
       <button class="m-2 p-4 rounded w-50" @click="inform =!inform">in</button>
     </div>
+    
     <hr>
+
     <div class="container" style="display: flex;
     justify-content: center;
     align-items: center;
@@ -39,10 +48,15 @@
       <div class="card w-50">
         <div class="card-header small">Last Out</div>
         <div class="card-body small">
-          detalis of in trucksw
-          <ul>
-            <li>tn-64-1234</li>
-          </ul>
+          
+      
+            <li>
+              {{data[0].lastout.truckNo}}
+            </li>
+            <li>
+              GPno{{data[0].lastout.gatepassNo}}
+            </li>
+     
         </div>
       </div>
       <button class="m-2 p-4 rounded w-50" @click="outform=!outform">out</button>
@@ -71,7 +85,7 @@
           Party :<br><input name="party"> <br>
           Broker :<br><input name="broker"> <br>
           Naration :<br><input name="naration"> <br>
-          User :<input name="user" value="<%= user %>" class="disabled btn"> <br>
+          User :<br>  <input name="user" value="<%= user %>" disabled class="border-none"> <br>
           <input type="submit" value="submit" class="btn btn-primary m-4">
         </p>
       </div>
@@ -105,12 +119,12 @@
           <!-- plantBranReport :<br><input name="plantBranReport" inputmode="numeric"> <br> -->
           gatepass no* : <br> <input name="bags" inputmode="numeric" required> <br>
           <div class="card d-inline-block ps-2">
-            Party :<input name="party" class="disabled btn"><br>
-            Broker :<input name="broker" class="disabled btn"><br>
-            Naration :<input name="naration" class="disabled btn"><br>
+            Party :<input name="party" disabled><br>
+            Broker :<input name="broker" disabled><br>
+            Naration :<input name="naration" disabled><br>
           </div>
           OutNaration :<br><input name="outNaration"> <br>
-          User :<input name="user" value="<%= user %>" class="disabled btn"> <br>
+          User :<br><input name="user" value="<%= user %>" disabled> <br>
           <input type="submit" value="check" class="btn btn-primary m-4">
         </p>
       </div>

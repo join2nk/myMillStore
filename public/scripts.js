@@ -1,8 +1,8 @@
 let dataJsonFromEjsServer = JSON.parse(document.querySelector('#ejsdata').value).reverse()
-dataJsonFromEjsServer.forEach((d, i) => {
-  d.sno = i + 1
-});
-document.querySelector('#ejsdata').remove()
+// dataJsonFromEjsServer.forEach((d, i) => {
+  // d.sno = i + 1
+// });
+// document.querySelector('#ejsdata').remove()
 console.log(dataJsonFromEjsServer)
 
 const vueApp = {

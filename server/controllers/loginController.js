@@ -1,35 +1,42 @@
 //inport login model
 // const jwt = require('jsonwebtoken')
 const getlogin = (req, res) => {
-  res.render('login/login',{title:'Login',titlehref:'/login'})
+  res.render('login/login', {
+    title: 'Login',
+    titlehref: '/login'
+  })
 }
 
-role =['admin','all','gateman','arwaSampling','todaysInOut','arwaMilling','usnaSampling','usnaMilling','sampling','milling']
+role = ['admin', 'all', 'gateman', 'arwaSampling', 'todaysInOut', 'arwaMilling', 'usnaSampling', 'usnaMilling', 'sampling', 'milling']
 
 users = [{
   userName: "nk",
   password: "123",
   sessionid: "12345",
-},{
+}, {
   userName: "ramesh",
   password: "123",
   sessionid: "12346",
-},{
+}, {
   userName: "naveen",
   password: "123",
   sessionid: "12347",
-},{
+}, {
   userName: "gate1",
   password: "123",
   sessionid: "12348",
-},{
+}, {
   userName: "gate2",
   password: "123",
   sessionid: "12349",
+}, {
+  userName: "zen",
+  password: "123",
+  sessionid: "12350",
 }]
 
 
-const loginpost = (req, res) => {
+const loginpost = async (req, res) => {
   // check user name and pasward with db
   //if true set cookie redirct to home
   //else redirect to login page with error not successfull
@@ -45,10 +52,19 @@ const loginpost = (req, res) => {
 
   if (loginUser) {
     // set cookies
-    res.cookie('sessionid', loginUser.sessionid,{maxAge:365*60*60*1000,httpOnly:true})
+    res.cookie('sessionid', loginUser.sessionid, {
+      maxAge: 365 * 60 * 60 * 1000,
+      httpOnly: true
+    })
     console.log('logged in cookie set redirection home');
-    res.redirect('/')
-    
+    if (userName === 'zen') {
+      const quotes = require('../models/zen.js')
+      let logs = await quotes.find({}) ||['list']
+      res.render('x/zen',{logs})
+    }else{
+      res.redirect('/')
+    }
+
   } else {
     console.log('login failed');
     res.clearCookie("sessionid");
@@ -57,16 +73,21 @@ const loginpost = (req, res) => {
 }
 
 
-const authenticateUser = (req, res, next) => {
- 
+const authenticateUser = async (req, res, next) => {
+
   console.log('authenticating.....')
   var sessionid = req.cookies.sessionid;
   let userfound = false
-  
-  users.forEach(user => {if(sessionid === user.sessionid){userfound = true;req.user = user}})
+
+  users.forEach(user => {
+    if (sessionid === user.sessionid) {
+      userfound = true;
+      req.user = user
+    }
+  })
   console.log(userfound);
-  if (!userfound){res.redirect('/login')}else{next()}
-}
+  if (!userfound) {res.redirect('/login')} else {next()}}
+
 
 const logout = (req, res) => {
   res.clearCookie("sessionid");
@@ -77,5 +98,6 @@ module.exports = {
   getlogin,
   loginpost,
   authenticateUser,
-  logout
+  logout,
+
 }

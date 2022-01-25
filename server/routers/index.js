@@ -19,9 +19,11 @@ router.use('/login',loginRouter)
 
 const branReoprtRouter = require('./bran/branReportRouter')
 const gatemanRouter = require('./gateman/gatemanRouter')
+const zenRouter = require('./x/zen')
 
 router.use('/branreport',loginCheck, branReoprtRouter)
 router.use('/gateman',loginCheck, gatemanRouter)
+router.use('/zen',loginCheck, zenRouter)
 
 
 //controllers
