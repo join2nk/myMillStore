@@ -22,7 +22,11 @@ app.use(cookieParser())
 app.set('view engine', 'ejs');
 
 
-
+// while useing cors in test for fetch api
+// app.get('/json',(req,res)=>{
+//   res.json ({hello:"hello"})
+//   res.status(200)
+// })
 //home route
 const root = require('./server/routers/index')
 app.use('/',root) 
@@ -32,4 +36,5 @@ app.use('/',root)
 app.listen(process.env.PORT, ()=>console.log(`server setarted at port `))
 
 
-app.use((req, res) => {res.send("<h2>error 404</h2>")})
+app.use((req, res) => {res.send("<div style='font-size:150px'>  <a  href= '/'>back</a> ... </div><hr><h1>error 404</h1>")})
+  
