@@ -39,3 +39,7 @@ thead>tr{
 summary{
   list-style: none;
 }
+.mean{
+  border-top: 2px solid orange;
+  
+}

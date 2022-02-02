@@ -173,7 +173,7 @@
                                                  <td>{{d.refno}}</td>
                                                  <td>{{d.party[0] + " - " +d.broker[0]}}</td>
                                                  <td>{{d.bags}}</td>
-                                                 <td>{{d.branReport}}</td>
+                                                 <td><div v-bind:class="{ mean: mean(d.branReport,d.plantBranReport) }">{{d.branReport}}</div></td>
                                                  <td>{{d.plantBranReport}}</td>
                                                  <td @click="editbyid = d._id;editForm = true" class="text-center">
                                                         <small><svg xmlns="http://www.w3.org/2000/svg" width="16"
