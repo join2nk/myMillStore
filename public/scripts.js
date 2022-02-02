@@ -24,8 +24,13 @@ const vueApp = {
         if (mean>=0.50)return true
       }
       
-    }
-    ,
+    },mean2: function (branReport,plantBranReport){
+      if (branReport>plantBranReport && plantBranReport){
+        let mean= branReport-plantBranReport 
+        if (mean>=1)return true
+      }
+      
+    },
     shortDateFormat: function (date) {
       let d = new Date(date)
       let month = d.getMonth() + 1
