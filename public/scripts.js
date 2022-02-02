@@ -19,10 +19,11 @@ const vueApp = {
   },
   methods: {
     mean: function (branReport,plantBranReport){
-      if (branReport>plantBranReport){
+      if (branReport>plantBranReport && plantBranReport){
         let mean= branReport-plantBranReport 
         if (mean>=0.50)return true
       }
+      
     }
     ,
     shortDateFormat: function (date) {
