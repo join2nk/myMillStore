@@ -9,39 +9,9 @@ const getlogin = (req, res) => {
 
 role = ['admin', 'all', 'gateman', 'arwaSampling', 'todaysInOut', 'arwaMilling', 'usnaSampling', 'usnaMilling', 'sampling', 'milling']
 
-users = [{
-  userName: "nk",
-  password: "123",
-  sessionid: "12345",
-}, {
-  userName: "ramesh",
-  password: "123",
-  sessionid: "12346",
-}, {
-  userName: "naveen",
-  password: "123",
-  sessionid: "12347",
-}, {
-  userName: "gate1",
-  password: "123",
-  sessionid: "12348",
-}, {
-  userName: "gate2",
-  password: "123",
-  sessionid: "12349",
-}, {
-  userName: "zen",
-  password: "123",
-  sessionid: "12350",
-}, {
-  userName: "sk",
-  password: "12345",
-  sessionid: "12351",
-}, {
-  userName: "kk",
-  password: "12345",
-  sessionid: "12352",
-}]
+const users = require('./users.js')
+
+
 
 
 const loginpost = async (req, res) => {
